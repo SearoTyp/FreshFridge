@@ -1,3 +1,5 @@
+/****THIS WILL NOT WORK WITHOUT RUNNING THE FOLLOWING LINE****
+npm install react-router-dom axios*/
 import logo from './logo.svg';
 import './App.css';
 
@@ -7,7 +9,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Edit <code>src/App.js wow</code> and save t
         </p>
         <a
           className="App-link"
