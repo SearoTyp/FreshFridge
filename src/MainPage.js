@@ -15,7 +15,7 @@ const MainPage = () => {
       setErrorMessage(""); // Clear any error message
     }
   };
-//hi
+
   const handleIngredientChange = (event) => {
     setIngredientName(event.target.value);
   };
