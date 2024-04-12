@@ -36,7 +36,6 @@ const MainPage = () => {
       }
     }
   };
-
   return (
     <div className="App">
       <h1>Welcome to FreshFridge</h1>
