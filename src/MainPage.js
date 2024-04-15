@@ -4,7 +4,7 @@ import './MainPage.css'; // Assuming the styles are imported
 const MainPage = () => {
   const [ingredients, setIngredients] = useState([]);
   const [inputValue, setInputValue] = useState(""); // State to hold the input value
-
+//hi
   const addIngredient = () => {
     if (inputValue.trim() !== "") { // Check if the input isn't just whitespace
       setIngredients([...ingredients, inputValue]);
