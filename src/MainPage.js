@@ -38,17 +38,25 @@ const MainPage = () => {
     navigate('/grocery-list'); // Adjust this path based on your routing setup
   };
 
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+   return (
+    <div style={{ position: 'relative', textAlign: 'center', height: '100vh' }}>
       <h1>Welcome to FreshFridge</h1>
       <p>Track your ingredients and get recipe suggestions!</p>
+
+      {/* Container to hold the images in a triangular layout */}
+      <div style={{ position: 'relative', width: '100%', height: '500px' }}> {/* Adjust height as needed */}
+        {/* Images positioned in a triangle */}
+        <img src="/images/FishandChoclate.JPG" alt="Fish and Chocolate" style={{ width: '30%', position: 'absolute', top: '0', left: '35%' }} />
+        <img src="/images/Fruits.JPG" alt="Fruits" style={{ width: '30%', position: 'absolute', bottom: '0', left: '5%' }} />
+        <img src="/images/SteakFish.JPG" alt="Steak and Fish" style={{ width: '30%', position: 'absolute', bottom: '0', right: '5%' }} />
+      </div>
 
       {/* Ingredient input and add button */}
       <div>
         <input
           type="text"
           placeholder="Add an ingredient"
-          value={inputValue} // Controlled component
+          value={inputValue}
           onChange={handleInputChange}
           onKeyPress={handleKeyPress}
         />
