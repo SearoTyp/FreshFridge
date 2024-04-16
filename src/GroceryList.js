@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate for programmatic navigation
 
 const GroceryList = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const GroceryList = () => {
     const quantity = event.target.elements.quantity.valueAsNumber;
     if (name && quantity > 0) {
       setItems(prevItems => [...prevItems, { name, quantity }]);
-      event.target.reset(); // Reset form input after submission
+      event.target.reset();  // Reset form input after submission
     }
   };
 
@@ -20,22 +20,26 @@ const GroceryList = () => {
   };
 
   const goToMainPage = () => {
-    navigate('/'); // Navigates back to the main page
+    navigate('/');  // Navigates back to the main page
+  };
+
+  const goToRecipes = () => {
+    navigate('/recipes');  // Function to navigate to the Recipes page
   };
 
   return (
     <div style={{
       backgroundImage: 'url(/images/FridgeImage2.JPG)',
-      backgroundSize: 'contain', // Changed from 'cover' to 'contain'
+      backgroundSize: 'contain',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
-      backgroundColor: 'white', // Ensure the background is white if the image doesn't cover the full page
+      backgroundColor: 'white',
       width: '100vw',
       height: '100vh',
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'center', // Aligns content vertically center
-      alignItems: 'center', // Aligns content horizontally center
+      justifyContent: 'center',
+      alignItems: 'center',
     }}>
       <div style={{
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
@@ -43,8 +47,7 @@ const GroceryList = () => {
         borderRadius: '10px',
         width: '80%',
         maxWidth: '500px',
-        textAlign: 'center', // Centers the text
-        zIndex: 2 // Ensure the form is above the background
+        textAlign: 'center',
       }}>
         <h2>What are we shopping for?</h2>
         <form onSubmit={addGroceryItem} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -58,7 +61,7 @@ const GroceryList = () => {
               <tr>
                 <th>Ingredient</th>
                 <th>Quantity</th>
-                <th></th> {/* New column for delete button */}
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -66,13 +69,14 @@ const GroceryList = () => {
                 <tr key={index}>
                   <td>{item.name}</td>
                   <td>{item.quantity}</td>
-                  <td><button onClick={() => deleteGroceryItem(index)} style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px', cursor: 'pointer' }}>Delete</button></td> {/* Delete button with red background */}
+                  <td><button onClick={() => deleteGroceryItem(index)} style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px', cursor: 'pointer' }}>Delete</button></td>
                 </tr>
               ))}
             </tbody>
           </table>
         )}
         <button onClick={goToMainPage}>Go to Ingredients List</button>
+        <button onClick={goToRecipes}>Go to Recipes</button>
       </div>
     </div>
   );
