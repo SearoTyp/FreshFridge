@@ -15,6 +15,10 @@ const GroceryList = () => {
     }
   };
 
+  const deleteGroceryItem = (index) => {
+    setItems(prevItems => prevItems.filter((_, i) => i !== index));
+  };
+
   const goToMainPage = () => {
     navigate('/'); // Navigates back to the main page
   };
@@ -42,17 +46,32 @@ const GroceryList = () => {
         textAlign: 'center', // Centers the text
         zIndex: 2 // Ensure the form is above the background
       }}>
-        <h2>What do you need for your fridge?</h2>
+        <h2>What are we shopping for?</h2>
         <form onSubmit={addGroceryItem} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          <input type="text" name="name" placeholder="Ingredient Name" required />
+          <input type="text" name="name" pattern="[A-Za-z]+" title="Please enter only letters" placeholder="Ingredient Name" required />
           <input type="number" name="quantity" placeholder="Quantity" required min="1" />
           <button type="submit">Add Ingredient</button>
         </form>
-        <ul>
-          {items.map((item, index) => (
-            <li key={index}>{item.name} - Quantity: {item.quantity}</li>
-          ))}
-        </ul>
+        {items.length > 0 && (
+          <table style={{ width: '100%', marginTop: '20px' }}>
+            <thead>
+              <tr>
+                <th>Ingredient</th>
+                <th>Quantity</th>
+                <th></th> {/* New column for delete button */}
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.name}</td>
+                  <td>{item.quantity}</td>
+                  <td><button onClick={() => deleteGroceryItem(index)} style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px', cursor: 'pointer' }}>Delete</button></td> {/* Delete button with red background */}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
         <button onClick={goToMainPage}>Go to Ingredients List</button>
       </div>
     </div>
