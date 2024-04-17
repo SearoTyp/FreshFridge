@@ -20,6 +20,18 @@ const GroceryList = () => {
     const name = event.target.elements.name.value.trim();
     const quantity = event.target.elements.quantity.valueAsNumber;
     if (name && quantity > 0) {
+      // Check if the ingredient already exists in the ingredients list
+      const ingredients = JSON.parse(sessionStorage.getItem('ingredients') || '[]');
+      const itemExists = ingredients.some(ingredient => ingredient.name.toLowerCase() === name.toLowerCase());
+
+      if (itemExists) {
+        // Ask user to confirm if they still want to add the item
+        const confirmAdd = window.confirm(`${name} is already in the ingredients list. Are you sure you want to add it to the grocery list?`);
+        if (!confirmAdd) {
+          return; // If user cancels, do not add the item
+        }
+      }
+
       setItems(prevItems => [...prevItems, { name, quantity }]);
       event.target.reset();  // Reset form input after submission
     }
