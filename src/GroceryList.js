@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate for programmatic navigation
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const GroceryList = () => {
   const navigate = useNavigate();
-  const [items, setItems] = useState([]);
+
+  // Initialize state from session storage or as an empty array
+  const [items, setItems] = useState(() => {
+    const savedItems = sessionStorage.getItem('groceryItems');
+    return savedItems ? JSON.parse(savedItems) : [];
+  });
+
+  // Update session storage when items change
+  useEffect(() => {
+    sessionStorage.setItem('groceryItems', JSON.stringify(items));
+  }, [items]);
 
   const addGroceryItem = (event) => {
     event.preventDefault();
@@ -20,11 +30,11 @@ const GroceryList = () => {
   };
 
   const goToMainPage = () => {
-    navigate('/');  // Navigates back to the main page
+    navigate('/');
   };
 
   const goToRecipes = () => {
-    navigate('/recipes');  // Function to navigate to the Recipes page
+    navigate('/recipes');
   };
 
   return (
