@@ -1,55 +1,53 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Recipes.css';  // Ensure CSS is correctly imported for styling
+import './Recipes.css';  // Make sure the CSS file is linked correctly
 
 const Recipes = () => {
-  const navigate = useNavigate(); // Used for navigating between routes
-  const [selectedAllergies, setSelectedAllergies] = useState([]); // Stores user-selected allergy filters
-  const [selectedDiets, setSelectedDiets] = useState([]); // Stores user-selected diet preferences
-  const [recipes, setRecipes] = useState([]); // Stores recipes fetched from API
+  const navigate = useNavigate();
+  const [selectedAllergies, setSelectedAllergies] = useState([]);
+  const [selectedDiets, setSelectedDiets] = useState([]);
+  const [recipes, setRecipes] = useState([]);
 
-  // List of allergies and diets could be extended or modified as needed
   const allergies = ["Gluten", "Dairy", "Eggs", "Soy", "Wheat", "Fish", "Shellfish", "Tree Nuts", "Peanuts"];
   const diets = ["Vegetarian", "Vegan", "Paleo", "High-Fiber", "High-Protein", "Low-Carb", "Low-Fat", "Low-Sodium", "Low-Sugar", "Alcohol-Free", "Balanced", "Immunity"];
 
-  // Handles changes in allergy checkbox selection
   const handleAllergyChange = (allergy) => {
     const newAllergies = selectedAllergies.includes(allergy)
-      ? selectedAllergies.filter(a => a !== allergy) // Remove allergy if already selected
-      : [...selectedAllergies, allergy]; // Add allergy if not already selected
+      ? selectedAllergies.filter(a => a !== allergy)
+      : [...selectedAllergies, allergy];
     setSelectedAllergies(newAllergies);
   };
 
-  // Handles changes in diet checkbox selection
   const handleDietChange = (diet) => {
     const newDiets = selectedDiets.includes(diet)
-      ? selectedDiets.filter(d => d !== diet) // Remove diet if already selected
-      : [...selectedDiets, diet]; // Add diet if not already selected
+      ? selectedDiets.filter(d => d !== diet)
+      : [...selectedDiets, diet];
     setSelectedDiets(newDiets);
   };
 
-  // Function to fetch recipes based on selected ingredients, allergies, and diets
   const fetchRecipes = async () => {
+    // Try to fetch ingredients from sessionStorage or use a default search query
     const ingredients = JSON.parse(sessionStorage.getItem('ingredients') || '[]');
-    const ingredientNames = ingredients.map(item => item.name).join(',');
+    const groceryItems = JSON.parse(sessionStorage.getItem('groceryItems') || '[]');
+    const allIngredients = [...ingredients, ...groceryItems].map(item => item.name).join(',');
+    const query = allIngredients || "healthy";  // Use a generic term like 'healthy' if no ingredients are specified
+
     const allergyParams = selectedAllergies.map(allergy => `&health=${allergy}`).join('');
     const dietParam = selectedDiets.length > 0 ? `&diet=${selectedDiets.join('&diet=')}` : '';
 
-    const url = `https://api.edamam.com/search?q=${ingredientNames}${allergyParams}${dietParam}&app_id=4bac8aa9&app_key=5de18e0d04cd5dd3685c82bb2aff5bad`;
+    const url = `https://api.edamam.com/search?q=${query}${allergyParams}${dietParam}&app_id=4bac8aa9&app_key=5de18e0d04cd5dd3685c82bb2aff5bad`;
     try {
-        console.log("Fetching recipes..."); // Log to indicate fetching has started
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log(data); // Log the data received from the API
-        if (data.hits && Array.isArray(data.hits)) {
-            setRecipes(data.hits); // Update recipes if data is correctly formatted
-        } else {
-            setRecipes([]); // Set recipes to an empty array if data is not as expected
-            console.log('No recipes found or bad data structure:', data);
-        }
+      console.log("Fetching recipes...", url);  // Log the complete URL for debugging
+      const response = await fetch(url);
+      const data = await response.json();
+      if (data.hits && Array.isArray(data.hits)) {
+        setRecipes(data.hits);  // Update the state with fetched recipes
+      } else {
+        setRecipes([]);  // Set to an empty array if no valid recipes are found
+      }
     } catch (error) {
-        console.error("Failed to fetch recipes", error);
-        setRecipes([]); // Handle errors by setting recipes to an empty array
+      console.error("Failed to fetch recipes", error);
+      setRecipes([]);  // Error handling: set recipes to an empty array
     }
   };
 
