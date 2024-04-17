@@ -48,6 +48,7 @@ const GroceryList = () => {
 
   return (
     <div style={{
+      position: 'relative',
       backgroundImage: 'url(/images/FridgeImage2.JPG)',
       backgroundSize: 'contain',
       backgroundPosition: 'center',
@@ -60,6 +61,17 @@ const GroceryList = () => {
       justifyContent: 'center',
       alignItems: 'center',
     }}>
+      <div style={{
+        position: 'absolute',
+        top: '20px',
+        left: '20px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+      }}>
+        <button onClick={goToMainPage} style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px', padding: '10px 20px', marginBottom: '10px' }}>Go to Ingredients List</button>
+        <button onClick={goToRecipes} style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px', padding: '10px 20px' }}>Go to Recipes</button>
+      </div>
       <div style={{
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
         padding: '20px',
@@ -93,8 +105,6 @@ const GroceryList = () => {
             </tbody>
           </table>
         )}
-        <button onClick={goToMainPage} style={{ marginTop: '10px' }}>Go to Ingredients List</button>
-        <button onClick={goToRecipes} style={{ marginTop: '10px' }}>Go to Recipes</button>
       </div>
     </div>
   );
