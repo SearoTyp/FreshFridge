@@ -1,5 +1,6 @@
-/****THIS WILL NOT WORK WITHOUT RUNNING THE FOLLOWING LINE****
-npm install react-router-dom axios*/
+/****THIS WILL NOT WORK WITHOUT RUNNING THE FOLLOWING LINES****
+npm install react-router-dom axios
+npm install js-cookie*/
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
