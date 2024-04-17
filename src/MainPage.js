@@ -17,7 +17,7 @@ const MainPage = () => {
       setQuantity(1); // Reset quantity to default
     }
   };
-
+  //window.localStorage.setItem("Ingredients", ingredients)
   // Function to navigate to the GroceryList page
   const goToGroceryList = () => {
     navigate('/grocery-list'); // Navigate to the grocery list page
