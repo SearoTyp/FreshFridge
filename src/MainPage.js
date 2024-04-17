@@ -20,18 +20,19 @@ const MainPage = () => {
   // Function to add an ingredient to the list
   const addIngredient = () => {
     if (inputValue.trim() !== "" && quantity > 0) {
-      const groceryItems = JSON.parse(sessionStorage.getItem('groceryItems') || '[]'); // Retrieve grocery list from session storage
-      const itemExists = groceryItems.some(item => item.name.toLowerCase() === inputValue.toLowerCase());
-      
-      if (itemExists) {
-        // Confirm before adding if item already exists in the grocery list
-        const confirmAdd = window.confirm(`${inputValue} is already in the grocery list. Are you sure you want to add it here too?`);
-        if (!confirmAdd) {
-          return; // If user does not confirm, do not add the item
+      const existingIndex = ingredients.findIndex(ing => ing.name.toLowerCase() === inputValue.toLowerCase());
+      if (existingIndex !== -1) {
+        // Ingredient already exists, confirm if user wants to add more
+        const confirmAdd = window.confirm(`${inputValue} is already in the ingredients list with quantity ${ingredients[existingIndex].quantity}. Do you want to add more to this quantity?`);
+        if (confirmAdd) {
+          const updatedIngredients = [...ingredients];
+          updatedIngredients[existingIndex].quantity += quantity;  // Increase the quantity
+          setIngredients(updatedIngredients);
         }
+      } else {
+        // Add new ingredient
+        setIngredients(prevIngredients => [...prevIngredients, { name: inputValue, quantity }]);
       }
-
-      setIngredients(prevIngredients => [...prevIngredients, { name: inputValue, quantity }]);
       setInputValue(""); // Clear the input field after adding
       setQuantity(1); // Reset quantity to default
     }
@@ -52,14 +53,12 @@ const MainPage = () => {
       <h1>Welcome to FreshFridge</h1>
       <p>Track your ingredients and get recipe suggestions!</p>
       
-      {/* Images positioned as before */}
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
         <img src="/images/FishandChoclate.JPG" alt="Fish and Chocolate" style={{ width: '30%', position: 'absolute', top: '0', left: '35%' }} />
         <img src="/images/Fruits.JPG" alt="Fruits" style={{ width: '30%', position: 'absolute', bottom: '0', left: '5%' }} />
         <img src="/images/SteakFish.JPG" alt="Steak and Fish" style={{ width: '30%', position: 'absolute', bottom: '0', right: '5%' }} />
       </div>
 
-      {/* Ingredient input and quantity input */}
       <input
         type="text"
         placeholder="Add an ingredient"
@@ -75,7 +74,6 @@ const MainPage = () => {
       />
       <button onClick={addIngredient}>Add</button>
 
-      {/* Display added ingredients */}
       <h2>Ingredients List</h2>
       <ul>
         {ingredients.map((ingredient, index) => (
@@ -83,7 +81,6 @@ const MainPage = () => {
         ))}
       </ul>
 
-      {/* Buttons for navigation */}
       <div className="buttons">
         <button onClick={goToGroceryList}>Go to Grocery List</button>
         <button onClick={goToRecipes}>Go to Recipes</button>
@@ -92,4 +89,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage
+export default MainPage;
