@@ -20,7 +20,7 @@ const MainPage = () => {
 
   // Function to navigate to the GroceryList page
   const goToGroceryList = () => {
-    navigate('/grocery-list'); // Navigate to the grocery list page
+    navigate('/grocery-list'); // Navigate to  the grocery list page
   };
 
   // Function to navigate to the Recipes page
