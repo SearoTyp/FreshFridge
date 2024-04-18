@@ -8,6 +8,10 @@ const Recipes = () => {
   const [allIngredients, setAllIngredients] = useState([]);
   const [recipes, setRecipes] = useState([]);
   const [nutritionData, setNutritionData] = useState({});
+  const [diet, setDiet] = useState('');
+  const [mealType, setMealType] = useState('');
+  const [healthLabels, setHealthLabels] = useState('');
+  const [cuisineType, setCuisineType] = useState('');
 
   useEffect(() => {
     const storedIngredients = JSON.parse(sessionStorage.getItem('ingredients') || '[]');
@@ -22,7 +26,7 @@ const Recipes = () => {
 
   const fetchRecipes = async () => {
     const query = selectedIngredients.map(item => item.name).join(',');
-    const url = `https://api.edamam.com/search?q=${query}&app_id=4bac8aa9&app_key=5de18e0d04cd5dd3685c82bb2aff5bad`;
+    const url = `https://api.edamam.com/search?q=${query}&app_id=4bac8aa9&app_key=5de18e0d04cd5dd3685c82bb2aff5bad&diet=${diet}&mealType=${mealType}&health=${healthLabels}&cuisineType=${cuisineType}`;
 
     try {
       const response = await fetch(url);
@@ -84,6 +88,37 @@ const Recipes = () => {
           {ingredient.name}
         </label>
       ))}
+      <div>
+        <select value={diet} onChange={(e) => setDiet(e.target.value)}>
+          <option value="">Select Diet</option>
+          <option value="balanced">Balanced</option>
+          <option value="high-protein">High-Protein</option>
+          <option value="low-fat">Low-Fat</option>
+          <option value="low-carb">Low-Carb</option>
+        </select>
+        <select value={mealType} onChange={(e) => setMealType(e.target.value)}>
+          <option value="">Select Meal Type</option>
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+          <option value="snack">Snack</option>
+        </select>
+        <select value={healthLabels} onChange={(e) => setHealthLabels(e.target.value)}>
+          <option value="">Select Health Labels</option>
+          <option value="peanut-free">Peanut-Free</option>
+          <option value="tree-nut-free">Tree-Nut-Free</option>
+          <option value="soy-free">Soy-Free</option>
+          <option value="gluten-free">Gluten-Free</option>
+        </select>
+        <select value={cuisineType} onChange={(e) => setCuisineType(e.target.value)}>
+          <option value="">Select Cuisine Type</option>
+          <option value="American">American</option>
+          <option value="Asian">Asian</option>
+          <option value="British">British</option>
+          <option value="Caribbean">Caribbean</option>
+          <option value="Central Europe">Central Europe</option>
+        </select>
+      </div>
       <button onClick={fetchRecipes}>Fetch Recipes</button>
       <div className="recipe-grid">
         {recipes.map((recipe, index) => (
