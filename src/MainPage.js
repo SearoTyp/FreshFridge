@@ -54,7 +54,7 @@ const MainPage = () => {
       <p>Track your ingredients and get recipe suggestions!</p>
       
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
-        <img src="/images/FishandChoclate.JPG" alt="Fish and Chocolate" style={{ width: '30%', position: 'absolute', top: '0', left: '35%' }} />
+        <img src="/images/openedfridge.JPG" alt="opened fridge" style={{ width: '30%', position: 'absolute', top: '0', left: '35%' }} />
         <img src="/images/Fruits.JPG" alt="Fruits" style={{ width: '30%', position: 'absolute', bottom: '0', left: '5%' }} />
         <img src="/images/SteakFish.JPG" alt="Steak and Fish" style={{ width: '30%', position: 'absolute', bottom: '0', right: '5%' }} />
       </div>
