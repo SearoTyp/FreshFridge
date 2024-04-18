@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './GroceryList.css';
 
 const GroceryList = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const GroceryList = () => {
     event.preventDefault();
     const name = event.target.elements.name.value.trim();
     const quantity = event.target.elements.quantity.valueAsNumber;
+    const unit = event.target.elements.unit.value;
     if (name && quantity > 0) {
       const existingIndex = items.findIndex(item => item.name.toLowerCase() === name.toLowerCase());
       if (existingIndex !== -1) {
@@ -28,7 +30,7 @@ const GroceryList = () => {
           setItems(updatedItems);
         }
       } else {
-        setItems(prevItems => [...prevItems, { name, quantity }]);
+        setItems(prevItems => [...prevItems, { name, quantity, unit }]);
       }
       event.target.reset();  // Reset form input after submission
     }
@@ -47,43 +49,38 @@ const GroceryList = () => {
   };
 
   return (
-    <div style={{
-      position: 'relative',
-      backgroundImage: 'url(/images/FridgeImage2.JPG)',
-      backgroundSize: 'contain',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
-      backgroundColor: 'white',
-      width: '100vw',
-      height: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-    }}>
+    <div className="grocery-list-container">
       <div>
-        <button onClick={goToMainPage} style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px', padding: '10px 20px', marginBottom: '10px' }}>Go to Ingredients List</button>
-        <button onClick={goToRecipes} style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px', padding: '10px 20px' }}>Go to Recipes</button>
+        <button onClick={goToMainPage} className="navigation-button">Go to Ingredients List</button>
+        <button onClick={goToRecipes} className="navigation-button">Go to Recipes</button>
       </div>
-      <div style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        padding: '20px',
-        borderRadius: '10px',
-        maxWidth: '500px',
-        textAlign: 'center',
-      }}>
+      <div className="form-container">
         <h2>What are we shopping for?</h2>
-        <form onSubmit={addGroceryItem} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        <form onSubmit={addGroceryItem} className="grocery-form">
           <input type="text" name="name" pattern="[A-Za-z]+" title="Please enter only letters" placeholder="Ingredient Name" required />
-          <input type="number" name="quantity" placeholder="Quantity" required min="1" />
+          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+            <input type="number" name="quantity" placeholder="Quantity" required min="1" />
+            <select name="unit">
+              <option value="gallon">Gallon(s)</option>
+              <option value="cup">Cup(s)</option>
+              <option value="ounce">Ounce(s)</option>
+              <option value="tablespoon">Tablespoon(s)</option>
+              <option value="teaspoon">Teaspoon(s)</option>
+              <option value="liter">Liter(s)</option>
+              <option value="milliliter">Milliliter(s)</option>
+              <option value="None">None</option>
+            </select>
+          </div>
           <button type="submit">Add Ingredient</button>
         </form>
         {items.length > 0 && (
-          <table style={{ width: '100%', marginTop: '20px' }}>
+          <table className="grocery-table">
             <thead>
               <tr>
                 <th>Ingredient</th>
                 <th>Quantity</th>
-                <th>Action</th>
+                <th>Unit</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -91,7 +88,8 @@ const GroceryList = () => {
                 <tr key={index}>
                   <td>{item.name}</td>
                   <td>{item.quantity}</td>
-                  <td><button onClick={() => deleteGroceryItem(index)} style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px', cursor: 'pointer' }}>Delete</button></td>
+                  <td>{item.unit === 'None' ? '' : item.unit}</td>
+                  <td><button onClick={() => deleteGroceryItem(index)} className="delete-button">Delete</button></td>
                 </tr>
               ))}
             </tbody>
@@ -102,4 +100,4 @@ const GroceryList = () => {
   );
 };
 
-export default GroceryList
+export default GroceryList;

@@ -1,0 +1,52 @@
+.grocery-list-container {
+    position: relative;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .navigation-button {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+  }
+  
+  .form-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    text-align: center;
+    margin: auto; /* Center the form container */
+    margin-top: 20px; /* Add some top margin */
+  }
+  
+  .grocery-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .grocery-table {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
