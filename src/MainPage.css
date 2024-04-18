@@ -1,5 +1,5 @@
 body {
-  background-color: #cbc9c9;
+  background-color: #e1dede;
   font-family: 'Arial', sans-serif;
 }
 
@@ -30,7 +30,7 @@ p {
 input[type="text"] {
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #ff7043;
+  border: 1px solid #000000;
   margin-right: 10px;
 }
 
@@ -40,7 +40,7 @@ input[type="text"] {
 }
 
 button {
-  background-color: #ff7043;
+  background-color: #000000;
   color: white;
   border: none;
   padding: 10px 20px;

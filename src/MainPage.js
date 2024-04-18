@@ -87,7 +87,7 @@ const MainPage = () => {
 
       <div className="buttons" style={{ textAlign: 'center', marginTop: '20px' }}>
         <button onClick={goToGroceryList} style={{ width: '170px', height: '40px', fontSize: '16px' }}>Go to Grocery List</button>
-        <img src="/images/grocerylist.JPG" alt="grocery list" style={{ maxWidth: '100%', height: 'auto', maxHeight: '300px' }} />
+        <img src="/images/groceries.JPG" alt="groceries" style={{ maxWidth: '100%', height: 'auto', maxHeight: '300px' }} />
     </div>
     <div className="buttons" style={{ textAlign: 'center', marginTop: '20px' }}>
         <button onClick={goToRecipes} style={{ width: '150px', height: '40px', fontSize: '16px' }}>Go to Recipes</button>
