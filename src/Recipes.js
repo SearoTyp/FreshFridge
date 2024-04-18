@@ -141,8 +141,8 @@ const Recipes = () => {
           <option value="vegan">Vegan</option>
           <option value="vegetarian">Vegetarian</option>
           <option value="wheat-free">Wheat-Free</option>
-      </select>
-      <select value={cuisineType} onChange={(e) => setCuisineType(e.target.value)}>
+        </select>
+        <select value={cuisineType} onChange={(e) => setCuisineType(e.target.value)}>
           <option value="">Select Cuisine Type</option>
           <option value="American">American</option>
           <option value="Asian">Asian</option>
@@ -162,7 +162,7 @@ const Recipes = () => {
           <option value="Nordic">Nordic</option>
           <option value="South American">South American</option>
           <option value="South East Asian">South East Asian</option>
-      </select>
+        </select>
       </div>
       <button onClick={fetchRecipes}>Fetch Recipes</button>
       <div className="recipe-grid">
@@ -185,6 +185,8 @@ const Recipes = () => {
           </div>
         ))}
       </div>
+      <button onClick={() => navigate('/')}>Go to Ingredients List</button>
+      <button onClick={() => navigate('/grocery-list')}>Go to Grocery List</button>
     </div>
   );
 };
