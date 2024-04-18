@@ -105,19 +105,64 @@ const Recipes = () => {
         </select>
         <select value={healthLabels} onChange={(e) => setHealthLabels(e.target.value)}>
           <option value="">Select Health Labels</option>
-          <option value="peanut-free">Peanut-Free</option>
-          <option value="tree-nut-free">Tree-Nut-Free</option>
-          <option value="soy-free">Soy-Free</option>
+          <option value="alcohol-cocktail">Alcohol-Cocktail</option>
+          <option value="alcohol-free">Alcohol-Free</option>
+          <option value="celery-free">Celery-Free</option>
+          <option value="crustacean-free">Crustacean-Free</option>
+          <option value="dairy-free">Dairy-Free</option>
+          <option value="DASH">DASH</option>
+          <option value="egg-free">Egg-Free</option>
+          <option value="fish-free">Fish-Free</option>
+          <option value="fodmap-free">FODMAP-Free</option>
           <option value="gluten-free">Gluten-Free</option>
-        </select>
-        <select value={cuisineType} onChange={(e) => setCuisineType(e.target.value)}>
+          <option value="immuno-supportive">Immuno-Supportive</option>
+          <option value="keto-friendly">Keto-Friendly</option>
+          <option value="kidney-friendly">Kidney-Friendly</option>
+          <option value="kosher">Kosher</option>
+          <option value="low-fat-abs">Low-Fat-Abs</option>
+          <option value="low-potassium">Low-Potassium</option>
+          <option value="low-sugar">Low-Sugar</option>
+          <option value="lupine-free">Lupine-Free</option>
+          <option value="Mediterranean">Mediterranean</option>
+          <option value="mollusk-free">Mollusk-Free</option>
+          <option value="mustard-free">Mustard-Free</option>
+          <option value="no-oil-added">No-Oil-Added</option>
+          <option value="paleo">Paleo</option>
+          <option value="peanut-free">Peanut-Free</option>
+          <option value="pescatarian">Pescatarian</option>
+          <option value="pork-free">Pork-Free</option>
+          <option value="red-meat-free">Red-Meat-Free</option>
+          <option value="sesame-free">Sesame-Free</option>
+          <option value="shellfish-free">Shellfish-Free</option>
+          <option value="soy-free">Soy-Free</option>
+          <option value="sugar-conscious">Sugar-Conscious</option>
+          <option value="sulfite-free">Sulfite-Free</option>
+          <option value="tree-nut-free">Tree-Nut-Free</option>
+          <option value="vegan">Vegan</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="wheat-free">Wheat-Free</option>
+      </select>
+      <select value={cuisineType} onChange={(e) => setCuisineType(e.target.value)}>
           <option value="">Select Cuisine Type</option>
           <option value="American">American</option>
           <option value="Asian">Asian</option>
           <option value="British">British</option>
           <option value="Caribbean">Caribbean</option>
           <option value="Central Europe">Central Europe</option>
-        </select>
+          <option value="Chinese">Chinese</option>
+          <option value="Eastern Europe">Eastern Europe</option>
+          <option value="French">French</option>
+          <option value="Indian">Indian</option>
+          <option value="Italian">Italian</option>
+          <option value="Japanese">Japanese</option>
+          <option value="Kosher">Kosher</option>
+          <option value="Mediterranean">Mediterranean</option>
+          <option value="Mexican">Mexican</option>
+          <option value="Middle Eastern">Middle Eastern</option>
+          <option value="Nordic">Nordic</option>
+          <option value="South American">South American</option>
+          <option value="South East Asian">South East Asian</option>
+      </select>
       </div>
       <button onClick={fetchRecipes}>Fetch Recipes</button>
       <div className="recipe-grid">
