@@ -1,17 +1,17 @@
 body {
-  background-color: #ffffff;
+  background-color: #cbc9c9;
   font-family: 'Arial', sans-serif;
 }
 
 h1 {
-  color: #151072;
+  color: #f8f8f8;
   text-align: center;
   margin-top: 20px;
 }
 
 p {
   text-align: center;
-  color: #4a4b8b;
+  color: #283156;
 }
 
 .App {
