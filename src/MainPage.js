@@ -49,16 +49,18 @@ const MainPage = () => {
   };
 
   return (
-    <div style={{ position: 'relative', textAlign: 'center', height: '100vh' }}>
-      <h1>Welcome to FreshFridge</h1>
-      <p>Track your ingredients and get recipe suggestions!</p>
-      
-      <div style={{ position: 'relative', width: '100%', height: '500px' }}>
-        <img src="/images/openedfridge.JPG" alt="opened fridge" style={{ width: '30%', position: 'absolute', top: '0', left: '35%' }} />
-        <img src="/images/Fruits.JPG" alt="Fruits" style={{ width: '30%', position: 'absolute', bottom: '0', left: '5%' }} />
-        <img src="/images/SteakFish.JPG" alt="Steak and Fish" style={{ width: '30%', position: 'absolute', bottom: '0', right: '5%' }} />
-      </div>
+    //opened fridge picture
+  <div>
+   <div style = {{ position: 'relative', width: '100%', height: 'auto', textAlign: 'center' }}>
+      <img src="/images/openedfridge.JPG" alt="opened fridge" style={{ width: '100%', height: '25vh', objectFit: 'cover' }} />
+    </div>
 
+    <div style={{ position: 'relative', textAlign: 'center'}}>
+      <h1>WELCOME TO FRESHFRIDGE</h1>
+      <p>Track your ingredients and get recipe suggestions!</p>
+    </div>
+
+    <div style={{ textAlign: 'center' }}>
       <input
         type="text"
         placeholder="Add an ingredient"
@@ -73,17 +75,23 @@ const MainPage = () => {
         min="1"
       />
       <button onClick={addIngredient}>Add</button>
-
-      <h2>Ingredients List</h2>
+    </div>
+    <div>
+      <h2 style={{ textAlign: 'center' }}>Ingredients List</h2>
       <ul>
         {ingredients.map((ingredient, index) => (
           <li key={index}>{ingredient.name} - Quantity: {ingredient.quantity}</li>
         ))}
       </ul>
+    </div>
 
-      <div className="buttons">
-        <button onClick={goToGroceryList}>Go to Grocery List</button>
-        <button onClick={goToRecipes}>Go to Recipes</button>
+      <div className="buttons" style={{ textAlign: 'center', marginTop: '20px' }}>
+        <button onClick={goToGroceryList} style={{ width: '170px', height: '40px', fontSize: '16px' }}>Go to Grocery List</button>
+        <img src="/images/grocerylist.JPG" alt="grocery list" style={{ maxWidth: '100%', height: 'auto', maxHeight: '300px' }} />
+    </div>
+    <div className="buttons" style={{ textAlign: 'center', marginTop: '20px' }}>
+        <button onClick={goToRecipes} style={{ width: '150px', height: '40px', fontSize: '16px' }}>Go to Recipes</button>
+        <img src="/images/cookbook.JPG" alt="cookbook" style={{ maxWidth: '100%', height: 'auto', maxHeight: '300px' }} />
       </div>
     </div>
   );
