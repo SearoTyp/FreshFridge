@@ -39,11 +39,11 @@ const GroceryList = () => {
   };
 
   const goToMainPage = () => {
-    navigate('/');
+    navigate('/');  // Assuming '/' is the route for the main ingredients page
   };
 
   const goToRecipes = () => {
-    navigate('/recipes');
+    navigate('/recipes');  // Assuming '/recipes' is the route for the recipes page
   };
 
   return (
@@ -58,17 +58,9 @@ const GroceryList = () => {
       height: '100vh',
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
+      alignItems: 'flex-start',
     }}>
-      <div style={{
-        position: 'absolute',
-        top: '20px',
-        left: '20px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-      }}>
+      <div>
         <button onClick={goToMainPage} style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px', padding: '10px 20px', marginBottom: '10px' }}>Go to Ingredients List</button>
         <button onClick={goToRecipes} style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px', padding: '10px 20px' }}>Go to Recipes</button>
       </div>
@@ -110,4 +102,4 @@ const GroceryList = () => {
   );
 };
 
-export default GroceryList;
+export default GroceryList

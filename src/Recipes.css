@@ -13,7 +13,7 @@
 }
 
 h2 {
-    color: #333;
+    color: #333; /* Dark text for headings */
 }
 
 label {
@@ -46,13 +46,33 @@ button:hover {
 }
 
 .recipe {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     border: 1px solid #ddd;
     margin: 10px;
     padding: 10px;
     border-radius: 5px;
-    width: 300px;
+    width: calc(33.333% - 20px); /* Adjust width to show three items per row */
+    box-sizing: border-box;
 }
 
 .navigation-buttons {
     margin-top: 20px;
+}
+
+.nutrition-details {
+    color: #222; /* Darker color for nutrition details text */
+    font-weight: bold; /* Makes text bold for better visibility */
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .recipe {
+        width: calc(50% - 20px); /* Show two items per row on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .recipe {
+        width: 100%; /* Stack vertically on very small screens */
+    }
 }

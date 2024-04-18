@@ -1,94 +1,112 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Recipes.css';  // Make sure the CSS file is linked correctly
+import './Recipes.css';
 
 const Recipes = () => {
   const navigate = useNavigate();
-  const [selectedAllergies, setSelectedAllergies] = useState([]);
-  const [selectedDiets, setSelectedDiets] = useState([]);
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const [allIngredients, setAllIngredients] = useState([]);
   const [recipes, setRecipes] = useState([]);
+  const [nutritionData, setNutritionData] = useState({});
 
-  const allergies = ["Gluten", "Dairy", "Eggs", "Soy", "Wheat", "Fish", "Shellfish", "Tree Nuts", "Peanuts"];
-  const diets = ["Vegetarian", "Vegan", "Paleo", "High-Fiber", "High-Protein", "Low-Carb", "Low-Fat", "Low-Sodium", "Low-Sugar", "Alcohol-Free", "Balanced", "Immunity"];
+  useEffect(() => {
+    const storedIngredients = JSON.parse(sessionStorage.getItem('ingredients') || '[]');
+    setAllIngredients(storedIngredients);
+  }, []);
 
-  const handleAllergyChange = (allergy) => {
-    const newAllergies = selectedAllergies.includes(allergy)
-      ? selectedAllergies.filter(a => a !== allergy)
-      : [...selectedAllergies, allergy];
-    setSelectedAllergies(newAllergies);
-  };
-
-  const handleDietChange = (diet) => {
-    const newDiets = selectedDiets.includes(diet)
-      ? selectedDiets.filter(d => d !== diet)
-      : [...selectedDiets, diet];
-    setSelectedDiets(newDiets);
+  const handleIngredientChange = ingredient => {
+    setSelectedIngredients(prev => 
+      prev.includes(ingredient) ? prev.filter(i => i !== ingredient) : [...prev, ingredient]
+    );
   };
 
   const fetchRecipes = async () => {
-    // Try to fetch ingredients from sessionStorage or use a default search query
-    const ingredients = JSON.parse(sessionStorage.getItem('ingredients') || '[]');
-    const groceryItems = JSON.parse(sessionStorage.getItem('groceryItems') || '[]');
-    const allIngredients = [...ingredients, ...groceryItems].map(item => item.name).join(',');
-    const query = allIngredients || "healthy";  // Use a generic term like 'healthy' if no ingredients are specified
+    const query = selectedIngredients.map(item => item.name).join(',');
+    const url = `https://api.edamam.com/search?q=${query}&app_id=4bac8aa9&app_key=5de18e0d04cd5dd3685c82bb2aff5bad`;
 
-    const allergyParams = selectedAllergies.map(allergy => `&health=${allergy}`).join('');
-    const dietParam = selectedDiets.length > 0 ? `&diet=${selectedDiets.join('&diet=')}` : '';
-
-    const url = `https://api.edamam.com/search?q=${query}${allergyParams}${dietParam}&app_id=4bac8aa9&app_key=5de18e0d04cd5dd3685c82bb2aff5bad`;
     try {
-      console.log("Fetching recipes...", url);  // Log the complete URL for debugging
       const response = await fetch(url);
       const data = await response.json();
-      if (data.hits && Array.isArray(data.hits)) {
-        setRecipes(data.hits);  // Update the state with fetched recipes
-      } else {
-        setRecipes([]);  // Set to an empty array if no valid recipes are found
-      }
+      setRecipes(data.hits || []);
     } catch (error) {
       console.error("Failed to fetch recipes", error);
-      setRecipes([]);  // Error handling: set recipes to an empty array
+      setRecipes([]);
     }
+  };
+
+  const addMissingItemsToGroceryList = (recipe) => {
+    const recipeIngredients = recipe.ingredients.map(ing => ing.food);
+    const existingGroceryItems = JSON.parse(sessionStorage.getItem('groceryItems') || '[]');
+    const newGroceryItems = recipeIngredients.filter(ing => 
+      !allIngredients.some(item => item.name === ing) &&
+      !existingGroceryItems.some(item => item.name === ing)
+    );
+
+    const updatedGroceryList = [...existingGroceryItems, ...newGroceryItems.map(ing => ({ name: ing }))];
+    sessionStorage.setItem('groceryItems', JSON.stringify(updatedGroceryList));
+    navigate('/grocery-list');
+  };
+
+  const fetchNutritionData = async (ingredients) => {
+    const url = `https://api.edamam.com/api/nutrition-details?app_id=b4b0910c&app_key=5b7e28ee49040bc75af20c8b3eea4dfb`;
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ ingr: ingredients.map(ing => ing.text) })
+      });
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Failed to fetch nutrition data", error);
+      return null;
+    }
+  };
+
+  const handleNutritionClick = async (recipe) => {
+    const nutritionInfo = await fetchNutritionData(recipe.ingredients);
+    setNutritionData({ ...nutritionData, [recipe.uri]: nutritionInfo });
   };
 
   return (
     <div className="recipes-container">
       <h1>Recipes</h1>
-      <div className="preferences">
-        <h2>Allergies</h2>
-        {allergies.map((allergy, index) => (
-          <label key={index}>
-            <input type="checkbox" checked={selectedAllergies.includes(allergy)} onChange={() => handleAllergyChange(allergy)} />
-            {allergy}
-          </label>
+      <h2>Choose Ingredients</h2>
+      {allIngredients.map((ingredient, index) => (
+        <label key={index}>
+          <input 
+            type="checkbox" 
+            checked={selectedIngredients.includes(ingredient)} 
+            onChange={() => handleIngredientChange(ingredient)}
+          />
+          {ingredient.name}
+        </label>
+      ))}
+      <button onClick={fetchRecipes}>Fetch Recipes</button>
+      <div className="recipe-grid">
+        {recipes.map((recipe, index) => (
+          <div key={index} className="recipe-card">
+            <h3>{recipe.recipe.label}</h3>
+            <img src={recipe.recipe.image} alt={recipe.recipe.label} style={{ maxWidth: '100px', maxHeight: '100px' }} />
+            <ul>
+              {recipe.recipe.ingredients.map(ing => <li key={ing.foodId}>{ing.text}</li>)}
+            </ul>
+            <button onClick={() => addMissingItemsToGroceryList(recipe.recipe)}>Add Missing Items to Grocery List</button>
+            <button onClick={() => handleNutritionClick(recipe.recipe)}>Get Nutrition Info</button>
+            {nutritionData[recipe.recipe.uri] && (
+              <div className="nutrition-details">
+                <h4>Nutrition Details:</h4>
+                <p>Calories: {nutritionData[recipe.recipe.uri].calories}</p>
+                {/* Display additional nutrition info as needed */}
+              </div>
+            )}
+          </div>
         ))}
-        <h2>Food Preferences</h2>
-        {diets.map((diet, index) => (
-          <label key={index}>
-            <input type="checkbox" checked={selectedDiets.includes(diet)} onChange={() => handleDietChange(diet)} />
-            {diet}
-          </label>
-        ))}
-        <button onClick={fetchRecipes}>Fetch Recipes</button>
-      </div>
-      {recipes.length > 0 && (
-        <div className="recipes-list">
-          {recipes.map((recipe, index) => (
-            <div key={index} className="recipe">
-              <h3>{recipe.recipe.label}</h3>
-              <ul>
-                {recipe.recipe.ingredients.map(ing => <li key={ing.foodId}>{ing.text}</li>)}
-              </ul>
-            </div>
-          ))}
-        </div>
-      )}
-      <div className="navigation-buttons">
-        <button onClick={() => navigate('/')}>Back to Ingredients</button>
-        <button onClick={() => navigate('/grocery-list')}>Go to Grocery List</button>
       </div>
     </div>
   );
-}
+};
 
 export default Recipes;
