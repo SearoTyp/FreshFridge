@@ -58,8 +58,9 @@ ul {
 }
 
 li {
+  color: white;
   margin: 10px 0;
-  background-color: #ffccbc;
+  background-color: #83b083;
   padding: 10px;
   border-radius: 5px;
   width: 200px;
