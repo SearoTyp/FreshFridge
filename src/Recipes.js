@@ -179,7 +179,13 @@ const Recipes = () => {
               <div className="nutrition-details">
                 <h4>Nutrition Details:</h4>
                 <p>Calories: {nutritionData[recipe.recipe.uri].calories}</p>
-                {/* Display additional nutrition info as needed */}
+              <p>Calories: {nutritionData[recipe.recipe.uri]?.calories}</p>
+              <p>Carbs: {nutritionData[recipe.recipe.uri]?.totalNutrients.CHOCDF.quantity.toFixed(2)} g</p>
+              <p>Protein: {nutritionData[recipe.recipe.uri]?.totalNutrients.PROCNT.quantity.toFixed(2)} g</p>
+              <p>Fats: {nutritionData[recipe.recipe.uri]?.totalNutrients.FAT.quantity.toFixed(2)} g</p>
+              <p>Cholesterol: {nutritionData[recipe.recipe.uri]?.totalNutrients.CHOLE?.quantity.toFixed(2)} mg</p>
+              <p>Sodium: {nutritionData[recipe.recipe.uri]?.totalNutrients.NA?.quantity.toFixed(2)} mg</p>
+              {/* Additional nutrients can be added here */}
               </div>
             )}
           </div>
