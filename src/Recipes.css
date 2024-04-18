@@ -1,78 +1,101 @@
+/* General styles for the recipe container */
 .recipes-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    font-family: Arial, sans-serif;
     padding: 20px;
+    box-sizing: border-box;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.preferences {
-    margin: 20px;
+/* Style adjustments for headers */
+h1, h2 {
+    color: #333;
+}
+
+/* Styling for form elements */
+select, button {
     padding: 10px;
+    margin: 10px 0;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
-h2 {
-    color: #333; /* Dark text for headings */
-}
-
-label {
-    display: block;
-    margin: 5px 0;
-}
-
-input[type="checkbox"] {
-    margin-right: 10px;
-}
-
-button {
-    padding: 10px 20px;
-    margin-top: 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-.recipes-list {
+/* Layout for recipe cards */
+.recipe-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    align-items: flex-start;
 }
 
-.recipe {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    border: 1px solid #ddd;
+.recipe-card {
+    flex: 1 1 45%; /* Controls width of each card */
     margin: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    width: calc(33.333% - 20px); /* Adjust width to show three items per row */
-    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Shadow for better visibility */
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Aligns content in the middle of the card */
 }
 
-.navigation-buttons {
-    margin-top: 20px;
+/* Ensuring images fit well within the cards and are centered */
+.recipe-card img {
+    max-width: 100%;
+    height: auto;
+    display: block;  /* Makes the image a block element to apply margin */
+    margin: 0 auto;  /* Centers the image horizontally */
 }
 
-.nutrition-details {
-    color: #222; /* Darker color for nutrition details text */
-    font-weight: bold; /* Makes text bold for better visibility */
+/* Centering titles within a card */
+.recipe-card h3 {
+    color: #2a2a2a;
+    text-align: center;  /* Centers the title text */
+}
+
+/* Styling for ingredient list to appear in two columns */
+.recipe-card ul {
+    columns: 2;  /* Creating two columns for the list */
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    padding: 0;
+}
+
+.recipe-card li {
+    list-style-type: none;
+    line-height: 1.6;
+    font-size: 14px;
+    break-inside: avoid-column; /* Prevents breaking items across columns */
+}
+
+/* Additional interaction cues */
+button {
+    background-color: #4CAF50; /* Green background for buttons */
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+    .recipe-card {
+        flex: 1 1 100%; /* Full width for mobile devices */
+    }
+    
+    .recipe-card ul {
+        columns: 1; /* Single column for ingredients on small screens */
+        -webkit-columns: 1;
+        -moz-columns: 1;
+    }
+}
+
+/* Optional: Extra visual tweaks for smaller details */
+.nutrition-details h4 {
     margin-top: 10px;
+    color: #666;
 }
 
-@media (max-width: 768px) {
-    .recipe {
-        width: calc(50% - 20px); /* Show two items per row on smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .recipe {
-        width: 100%; /* Stack vertically on very small screens */
-    }
+.nutrition-details p {
+    font-size: small;
+    color: #444;
 }
