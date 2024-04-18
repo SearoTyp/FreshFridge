@@ -52,7 +52,7 @@ const MainPage = () => {
     //opened fridge picture
   <div>
    <div style = {{ position: 'relative', width: '100%', height: 'auto', textAlign: 'center' }}>
-      <img src="/images/openedfridge.JPG" alt="opened fridge" style={{ width: '100%', height: '25vh', objectFit: 'cover' }} />
+      <img src="/images/openfridgeimage.JPG" alt="food in fridge" style={{ width: '100%', height: 'auto', maxHeight: '40vh', objectFit: 'cover' }} />
     </div>
 
     <div style={{ position: 'relative', textAlign: 'center'}}>
