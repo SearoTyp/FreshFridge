@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './MainPage.css'; // Assuming the styles are imported
-// hi
+
 const MainPage = () => {
   const navigate = useNavigate();
   const [ingredients, setIngredients] = useState(() => {
     // Initialize ingredients from sessionStorage if available
     const savedIngredients = sessionStorage.getItem('ingredients');
     return savedIngredients ? JSON.parse(savedIngredients) : [];
-  });
+  }); 
   const [inputValue, setInputValue] = useState("");  // State to hold the current input value for ingredient name
   const [quantity, setQuantity] = useState(1);  // State to hold the quantity of the ingredient
 

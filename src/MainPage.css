@@ -7,7 +7,7 @@ h1 {
   color: #f8f8f8;
   text-align: center;
   margin-top: 20px;
-}
+} 
 
 p {
   text-align: center;
@@ -38,7 +38,7 @@ input[type="text"] {
   width: 100px; /* Width of the smaller input field */
   margin-left: 0px; /* Reduce spacing for visual consistency */
 }
-/*hi*/
+
 button {
   background-color: #000000;
   color: white;
