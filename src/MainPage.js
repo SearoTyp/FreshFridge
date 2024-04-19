@@ -56,7 +56,7 @@ const MainPage = () => {
     </div>
 
     <div style={{ position: 'relative', textAlign: 'center'}}>
-      <h1>WELCOME TO FRESHFRIDGE</h1>
+      <h1 className = "heading"> WELCOME TO FRESHFRIDGE</h1>
       <p>Track your ingredients and get recipe suggestions!</p>
     </div>
 

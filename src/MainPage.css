@@ -3,8 +3,8 @@ body {
   font-family: 'Arial', sans-serif;
 }
 
-h1 {
-  color: #f8f8f8;
+.heading {
+  color: #042a7b;
   text-align: center;
   margin-top: 20px;
 } 
