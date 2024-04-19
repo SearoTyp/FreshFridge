@@ -88,11 +88,11 @@ const MainPage = () => {
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
       <div className="buttons" style={{ marginRight: '20px' }}>
       <img src="/images/groceries.JPG" alt="groceries" style={{ maxWidth: '100%', height: 'auto', maxHeight: '300px' }} />
-      <button onClick={goToGroceryList} style={{ width: '170px', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Grocery List</button>
+      <button onClick={goToGroceryList} style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Grocery List</button>
     </div>
     <div className="buttons" >
         <img src="/images/cookbook.JPG" alt="cookbook" style={{ maxWidth: '100%', height: 'auto', maxHeight: '300px' }} />
-        <button onClick={goToRecipes} style={{ width: '150px', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Recipes</button>
+        <button onClick={goToRecipes} style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Recipes</button>
       </div>
       </div>
     </div>
