@@ -99,3 +99,41 @@ button {
     font-size: small;
     color: #444;
 }
+
+/* Styling for the nutrition details to appear in two columns */
+.nutrition-details {
+    column-count: 2;  /* Maintaining two columns for the list */
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    padding: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #eee; /* Subtle top border for visual separation */
+    width: 100%;  /* Full width of its parent */
+}
+
+.nutrition-details p {
+    font-size: small;
+    color: #444;
+    padding: 2px;  /* Padding around text for readability */
+    break-inside: avoid-column; /* Avoids splitting paragraphs between columns */
+}
+
+/* Updated styling for the header to ensure it is centered */
+.nutrition-details h4 {
+    margin-top: 0;
+    color: #666;
+    text-align: center;  /* Centers the text horizontally */
+    width: 100%;  /* Ensures the heading spans both columns */
+    display: block;  /* Block display to respect text-align */
+    column-span: all;  /* Attempts to span across all columns if supported */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+    .nutrition-details {
+        column-count: 1;  /* One column on small screens */
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+    }
+}
+
