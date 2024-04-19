@@ -9,7 +9,6 @@
     overflow: hidden; /* Prevents the white space at the top */
 }
 
-
 /* Style adjustments for headers */
 h1, h2 {
     color: #ffffff;
@@ -34,10 +33,23 @@ select, button {
 .recipe-card {
     flex: 1 1 45%; /* Controls width of each card */
     margin: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Shadow for better visibility */
+    box-shadow: 0 4px 8px rgba(0,0,0,1); /* Shadow for better visibility */
     display: flex;
     flex-direction: column;
-    align-items: center;  /* Aligns content in the middle of the card */
+    align-items: center; /* Aligns content in the middle of the card */
+    position: relative; /* Needed for absolute positioning of the pseudo-element */
+    background: rgba(255, 255, 255, .01); /* Semi-transparent white background */
+}
+
+.recipe-card::before {
+    content: ''; /* Required for a pseudo-element */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9); /* Less transparent white background */
+    z-index: -1; /* Ensures it stays behind the content */
 }
 
 /* Ensuring images fit well within the cards and are centered */
@@ -116,7 +128,7 @@ button {
 
 .nutrition-details p {
     font-size: small;
-    color: #444;
+    color: #ffffff;
     padding: 2px;  /* Padding around text for readability */
     break-inside: avoid-column; /* Avoids splitting paragraphs between columns */
 }
@@ -124,7 +136,7 @@ button {
 /* Updated styling for the header to ensure it is centered */
 .nutrition-details h4 {
     margin-top: 0;
-    color: #666;
+    color: #000000;
     text-align: center;  /* Centers the text horizontally */
     width: 100%;  /* Ensures the heading spans both columns */
     display: block;  /* Block display to respect text-align */
@@ -139,4 +151,3 @@ button {
         -moz-column-count: 1;
     }
 }
-
