@@ -85,15 +85,25 @@ const MainPage = () => {
       </ul>
     </div>
 
-      <div className="buttons" style={{ textAlign: 'center', marginTop: '20px' }}>
-        <button onClick={goToGroceryList} style={{ width: '170px', height: '40px', fontSize: '16px' }}>Go to Grocery List</button>
+    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+  <div className="buttons-container" style={{ marginRight: '20px', textAlign: 'center' }}>
+    <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <a href="/grocery-list">
         <img src="/images/groceries.JPG" alt="groceries" style={{ maxWidth: '100%', height: 'auto', maxHeight: '300px' }} />
+      </a>
+      <button onClick={goToGroceryList} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Grocery List</button>
     </div>
-    <div className="buttons" style={{ textAlign: 'center', marginTop: '20px' }}>
-        <button onClick={goToRecipes} style={{ width: '150px', height: '40px', fontSize: '16px' }}>Go to Recipes</button>
+  </div>
+  <div className="buttons-container" style={{ textAlign: 'center' }}>
+    <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <a href="/recipes">
         <img src="/images/cookbook.JPG" alt="cookbook" style={{ maxWidth: '100%', height: 'auto', maxHeight: '300px' }} />
-      </div>
+      </a>
+      <button onClick={goToRecipes} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Recipes</button>
     </div>
+  </div>
+</div>
+</div>
   );
 };
 
