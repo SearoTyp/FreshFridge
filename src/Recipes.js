@@ -179,39 +179,39 @@ const Recipes = () => {
               <div className="nutrition-details">
                 <h4>Nutrition Details:</h4>
                 <p>Calories: {nutritionData[recipe.recipe.uri].calories}</p>
-              <p>Carbs: {nutritionData[recipe.recipe.uri]?.totalNutrients.CHOCDF.quantity.toFixed(2)} g</p>
-              <p>Protein: {nutritionData[recipe.recipe.uri]?.totalNutrients.PROCNT.quantity.toFixed(2)} g</p>
-              <p>Fats: {nutritionData[recipe.recipe.uri]?.totalNutrients.FAT.quantity.toFixed(2)} g</p>
-              <p>Cholesterol: {nutritionData[recipe.recipe.uri]?.totalNutrients.CHOLE?.quantity.toFixed(2)} mg</p>
-              <p>Sodium: {nutritionData[recipe.recipe.uri]?.totalNutrients.NA?.quantity.toFixed(2)} mg</p>
-              <p>Added Sugar: {nutritionData[recipe.recipe.uri]?.totalNutrients.SUGAR_added?.quantity.toFixed(2)} g</p>
-              <p>Calcium: {nutritionData[recipe.recipe.uri]?.totalNutrients.CA?.quantity.toFixed(2)} mg</p>
-              <p>Net Carbohydrates: {nutritionData[recipe.recipe.uri]?.totalNutrients.CHOCDF_net?.quantity.toFixed(2)} g</p>
-              <p>Fiber: {nutritionData[recipe.recipe.uri]?.totalNutrients.FIBTG?.quantity.toFixed(2)} g</p>
-              <p>Monounsaturated Fat: {nutritionData[recipe.recipe.uri]?.totalNutrients.FAMS?.quantity.toFixed(2)} g</p>
-              <p>Polyunsaturated Fat: {nutritionData[recipe.recipe.uri]?.totalNutrients.FAPU?.quantity.toFixed(2)} g</p>
-              <p>Saturated Fat: {nutritionData[recipe.recipe.uri]?.totalNutrients.FASAT?.quantity.toFixed(2)} g</p>
-              <p>Trans Fat: {nutritionData[recipe.recipe.uri]?.totalNutrients.FATRN?.quantity.toFixed(2)} g</p>
-              <p>Folate: {nutritionData[recipe.recipe.uri]?.totalNutrients.FOLDFE?.quantity.toFixed(2)} µg</p>
-              <p>Iron: {nutritionData[recipe.recipe.uri]?.totalNutrients.FE?.quantity.toFixed(2)} mg</p>
-              <p>Magnesium: {nutritionData[recipe.recipe.uri]?.totalNutrients.MG?.quantity.toFixed(2)} mg</p>
-              <p>Niacin: {nutritionData[recipe.recipe.uri]?.totalNutrients.NIA?.quantity.toFixed(2)} mg</p>
-              <p>Phosphorus: {nutritionData[recipe.recipe.uri]?.totalNutrients.P?.quantity.toFixed(2)} mg</p>
-              <p>Potassium: {nutritionData[recipe.recipe.uri]?.totalNutrients.K?.quantity.toFixed(2)} mg</p>
-              <p>Riboflavin: {nutritionData[recipe.recipe.uri]?.totalNutrients.RIBF?.quantity.toFixed(2)} mg</p>
-              <p>Sugar Alcohol: {nutritionData[recipe.recipe.uri]?.totalNutrients.Sugar_alcohol?.quantity.toFixed(2)} g</p>
-              <p>Total Sugars: {nutritionData[recipe.recipe.uri]?.totalNutrients.SUGAR?.quantity.toFixed(2)} g</p>
-              <p>Thiamin: {nutritionData[recipe.recipe.uri]?.totalNutrients.THIA?.quantity.toFixed(2)} mg</p>
-              <p>Vitamin A: {nutritionData[recipe.recipe.uri]?.totalNutrients.VITA_RAE?.quantity.toFixed(2)} µg</p>
-              <p>Vitamin B12: {nutritionData[recipe.recipe.uri]?.totalNutrients.VITB12?.quantity.toFixed(2)} µg</p>
-              <p>Vitamin B6: {nutritionData[recipe.recipe.uri]?.totalNutrients.VITB6A?.quantity.toFixed(2)} mg</p>
-              <p>Vitamin C: {nutritionData[recipe.recipe.uri]?.totalNutrients.VITC?.quantity.toFixed(2)} mg</p>
-              <p>Vitamin D: {nutritionData[recipe.recipe.uri]?.totalNutrients.VITD?.quantity.toFixed(2)} µg</p>
-              <p>Vitamin E: {nutritionData[recipe.recipe.uri]?.totalNutrients.TOCPHA?.quantity.toFixed(2)} mg</p>
-              <p>Vitamin K: {nutritionData[recipe.recipe.uri]?.totalNutrients.VITK1?.quantity.toFixed(2)} µg</p>
-              <p>Zinc: {nutritionData[recipe.recipe.uri]?.totalNutrients.ZN?.quantity.toFixed(2)} mg</p>
-              <p>Water: {nutritionData[recipe.recipe.uri]?.totalNutrients.WATER?.quantity.toFixed(2)} g</p>
-              {/* Additional nutrients can be added here */}
+                <p>Carbs: {nutritionData[recipe.recipe.uri]?.totalNutrients.CHOCDF.quantity.toFixed(2)} g</p>
+                <p>Protein: {nutritionData[recipe.recipe.uri]?.totalNutrients.PROCNT.quantity.toFixed(2)} g</p>
+                <p>Fats: {nutritionData[recipe.recipe.uri]?.totalNutrients.FAT.quantity.toFixed(2)} g</p>
+                <p>Cholesterol: {nutritionData[recipe.recipe.uri]?.totalNutrients.CHOLE?.quantity.toFixed(2)} mg</p>
+                <p>Sodium: {nutritionData[recipe.recipe.uri]?.totalNutrients.NA?.quantity.toFixed(2)} mg</p>
+                <p>Added Sugar: {nutritionData[recipe.recipe.uri]?.totalNutrients.SUGAR_added?.quantity.toFixed(2)} g</p>
+                <p>Calcium: {nutritionData[recipe.recipe.uri]?.totalNutrients.CA?.quantity.toFixed(2)} mg</p>
+                <p>Net Carbohydrates: {nutritionData[recipe.recipe.uri]?.totalNutrients.CHOCDF_net?.quantity.toFixed(2)} g</p>
+                <p>Fiber: {nutritionData[recipe.recipe.uri]?.totalNutrients.FIBTG?.quantity.toFixed(2)} g</p>
+                <p>Monounsaturated Fat: {nutritionData[recipe.recipe.uri]?.totalNutrients.FAMS?.quantity.toFixed(2)} g</p>
+                <p>Polyunsaturated Fat: {nutritionData[recipe.recipe.uri]?.totalNutrients.FAPU?.quantity.toFixed(2)} g</p>
+                <p>Saturated Fat: {nutritionData[recipe.recipe.uri]?.totalNutrients.FASAT?.quantity.toFixed(2)} g</p>
+                <p>Trans Fat: {nutritionData[recipe.recipe.uri]?.totalNutrients.FATRN?.quantity.toFixed(2)} g</p>
+                <p>Folate: {nutritionData[recipe.recipe.uri]?.totalNutrients.FOLDFE?.quantity.toFixed(2)} µg</p>
+                <p>Iron: {nutritionData[recipe.recipe.uri]?.totalNutrients.FE?.quantity.toFixed(2)} mg</p>
+                <p>Magnesium: {nutritionData[recipe.recipe.uri]?.totalNutrients.MG?.quantity.toFixed(2)} mg</p>
+                <p>Niacin: {nutritionData[recipe.recipe.uri]?.totalNutrients.NIA?.quantity.toFixed(2)} mg</p>
+                <p>Phosphorus: {nutritionData[recipe.recipe.uri]?.totalNutrients.P?.quantity.toFixed(2)} mg</p>
+                <p>Potassium: {nutritionData[recipe.recipe.uri]?.totalNutrients.K?.quantity.toFixed(2)} mg</p>
+                <p>Riboflavin: {nutritionData[recipe.recipe.uri]?.totalNutrients.RIBF?.quantity.toFixed(2)} mg</p>
+                <p>Sugar Alcohol: {nutritionData[recipe.recipe.uri]?.totalNutrients.Sugar_alcohol?.quantity.toFixed(2)} g</p>
+                <p>Total Sugars: {nutritionData[recipe.recipe.uri]?.totalNutrients.SUGAR?.quantity.toFixed(2)} g</p>
+                <p>Thiamin: {nutritionData[recipe.recipe.uri]?.totalNutrients.THIA?.quantity.toFixed(2)} mg</p>
+                <p>Vitamin A: {nutritionData[recipe.recipe.uri]?.totalNutrients.VITA_RAE?.quantity.toFixed(2)} µg</p>
+                <p>Vitamin B12: {nutritionData[recipe.recipe.uri]?.totalNutrients.VITB12?.quantity.toFixed(2)} µg</p>
+                <p>Vitamin B6: {nutritionData[recipe.recipe.uri]?.totalNutrients.VITB6A?.quantity.toFixed(2)} mg</p>
+                <p>Vitamin C: {nutritionData[recipe.recipe.uri]?.totalNutrients.VITC?.quantity.toFixed(2)} mg</p>
+                <p>Vitamin D: {nutritionData[recipe.recipe.uri]?.totalNutrients.VITD?.quantity.toFixed(2)} µg</p>
+                <p>Vitamin E: {nutritionData[recipe.recipe.uri]?.totalNutrients.TOCPHA?.quantity.toFixed(2)} mg</p>
+                <p>Vitamin K: {nutritionData[recipe.recipe.uri]?.totalNutrients.VITK1?.quantity.toFixed(2)} µg</p>
+                <p>Zinc: {nutritionData[recipe.recipe.uri]?.totalNutrients.ZN?.quantity.toFixed(2)} mg</p>
+                <p>Water: {nutritionData[recipe.recipe.uri]?.totalNutrients.WATER?.quantity.toFixed(2)} g</p>
+                {/* Additional nutrients can be added here */}
               </div>
             )}
           </div>
