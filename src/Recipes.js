@@ -70,9 +70,15 @@ const Recipes = () => {
   };
 
   const handleNutritionClick = async (recipe) => {
-    const nutritionInfo = await fetchNutritionData(recipe.ingredients);
-    setNutritionData({ ...nutritionData, [recipe.uri]: nutritionInfo });
-  };
+    if (nutritionData[recipe.uri]) {
+        const newNutritionData = { ...nutritionData };
+        delete newNutritionData[recipe.uri];  // This removes the entry, hiding the info
+        setNutritionData(newNutritionData);
+    } else {
+        const nutritionInfo = await fetchNutritionData(recipe.ingredients);
+        setNutritionData({ ...nutritionData, [recipe.uri]: nutritionInfo });
+    }
+};
 
   return (
     <div className="recipes-container">
