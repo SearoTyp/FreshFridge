@@ -5,13 +5,11 @@ import './GroceryList.css';
 const GroceryList = () => {
   const navigate = useNavigate();
 
-  // Initialize state from session storage or as an empty array
   const [items, setItems] = useState(() => {
     const savedItems = sessionStorage.getItem('groceryItems');
     return savedItems ? JSON.parse(savedItems) : [];
   });
 
-  // Update session storage when items change
   useEffect(() => {
     sessionStorage.setItem('groceryItems', JSON.stringify(items));
   }, [items]);
@@ -32,7 +30,7 @@ const GroceryList = () => {
       } else {
         setItems(prevItems => [...prevItems, { name, quantity, unit }]);
       }
-      event.target.reset();  // Reset form input after submission
+      event.target.reset();
     }
   };
 
@@ -40,17 +38,29 @@ const GroceryList = () => {
     setItems(prevItems => prevItems.filter((_, i) => i !== index));
   };
 
+  const updateQuantity = (index, quantity) => {
+    const updatedItems = [...items];
+    updatedItems[index].quantity = quantity;
+    setItems(updatedItems);
+  };
+
+  const updateUnit = (index, unit) => {
+    const updatedItems = [...items];
+    updatedItems[index].unit = unit;
+    setItems(updatedItems);
+  };
+
   const goToMainPage = () => {
-    navigate('/');  // Assuming '/' is the route for the main ingredients page
+    navigate('/');
   };
 
   const goToRecipes = () => {
-    navigate('/recipes');  // Assuming '/recipes' is the route for the recipes page
+    navigate('/recipes');
   };
 
   return (
-    <div className="grocery-list-container">
-      <div>
+    <div className="grocery-list-container" style={{ backgroundImage: 'url(/images/fooditems.JPG)' }}>
+      <div className="navigation-container">
         <button onClick={goToMainPage} className="navigation-button">Go to Ingredients List</button>
         <button onClick={goToRecipes} className="navigation-button">Go to Recipes</button>
       </div>
@@ -58,7 +68,7 @@ const GroceryList = () => {
         <h2>What are we shopping for?</h2>
         <form onSubmit={addGroceryItem} className="grocery-form">
           <input type="text" name="name" pattern="[A-Za-z]+" title="Please enter only letters" placeholder="Ingredient Name" required />
-          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+          <div className="input-group">
             <input type="number" name="quantity" placeholder="Quantity" required min="1" />
             <select name="unit">
               <option value="gallon">Gallon(s)</option>
@@ -73,29 +83,45 @@ const GroceryList = () => {
           </div>
           <button type="submit">Add Ingredient</button>
         </form>
-        {items.length > 0 && (
+      </div>
+      {items.length > 0 && (
+        <div className="table-container">
+          <h3>Cart</h3>
           <table className="grocery-table">
             <thead>
               <tr>
                 <th>Ingredient</th>
                 <th>Quantity</th>
                 <th>Unit</th>
-                <th></th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {items.map((item, index) => (
                 <tr key={index}>
                   <td>{item.name}</td>
-                  <td>{item.quantity}</td>
-                  <td>{item.unit === 'None' ? '' : item.unit}</td>
+                  <td>
+                    <input type="number" value={item.quantity} onChange={(e) => updateQuantity(index, Number(e.target.value))} min="0" />
+                  </td>
+                  <td>
+                    <select value={item.unit} onChange={(e) => updateUnit(index, e.target.value)}>
+                      <option value="gallon">Gallon(s)</option>
+                      <option value="cup">Cup(s)</option>
+                      <option value="ounce">Ounce(s)</option>
+                      <option value="tablespoon">Tablespoon(s)</option>
+                      <option value="teaspoon">Teaspoon(s)</option>
+                      <option value="liter">Liter(s)</option>
+                      <option value="milliliter">Milliliter(s)</option>
+                      <option value="None">None</option>
+                    </select>
+                  </td>
                   <td><button onClick={() => deleteGroceryItem(index)} className="delete-button">Delete</button></td>
                 </tr>
               ))}
             </tbody>
           </table>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
