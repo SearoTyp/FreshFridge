@@ -33,12 +33,12 @@ select, button {
 .recipe-card {
     flex: 1 1 45%; /* Controls width of each card */
     margin: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Shadow for better visibility */
+    box-shadow: 0 4px 8px rgba(0,0,0,1); /* Shadow for better visibility */
     display: flex;
     flex-direction: column;
     align-items: center; /* Aligns content in the middle of the card */
     position: relative; /* Needed for absolute positioning of the pseudo-element */
-    background: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
+    background: rgba(255, 255, 255, .01); /* Semi-transparent white background */
 }
 
 .recipe-card::before {
@@ -128,7 +128,7 @@ button {
 
 .nutrition-details p {
     font-size: small;
-    color: #444;
+    color: #ffffff;
     padding: 2px;  /* Padding around text for readability */
     break-inside: avoid-column; /* Avoids splitting paragraphs between columns */
 }
@@ -136,7 +136,7 @@ button {
 /* Updated styling for the header to ensure it is centered */
 .nutrition-details h4 {
     margin-top: 0;
-    color: #444;
+    color: #000000;
     text-align: center;  /* Centers the text horizontally */
     width: 100%;  /* Ensures the heading spans both columns */
     display: block;  /* Block display to respect text-align */
