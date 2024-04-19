@@ -1,15 +1,17 @@
 /* General styles for the recipe container */
 .recipes-container {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    box-sizing: border-box;
-    max-width: 1200px;
-    margin: 0 auto;
+    background-size: cover; /* Cover the entire area of the container */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-attachment: fixed; /* Optional: Fixes the background image during scroll */
+    min-height: 100vh; /* Minimum height to cover the whole viewport */
+    color: #fff; /* Ensures text is readable, change as per your design */
+    position: relative; /* Needed to position text over the image */
 }
+
 
 /* Style adjustments for headers */
 h1, h2 {
-    color: #333;
+    color: #ffffff;
 }
 
 /* Styling for form elements */
