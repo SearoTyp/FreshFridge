@@ -81,7 +81,7 @@ const Recipes = () => {
 };
 
   return (
-    <div className="recipes-container">
+    <div className="recipes-container" style={{ backgroundImage: 'url(/images/recipebackground.jpeg)' }}> 
       <h1>Recipes</h1>
       <h2>Choose Ingredients</h2>
       {allIngredients.map((ingredient, index) => (
