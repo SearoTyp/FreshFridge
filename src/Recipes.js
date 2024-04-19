@@ -179,7 +179,6 @@ const Recipes = () => {
               <div className="nutrition-details">
                 <h4>Nutrition Details:</h4>
                 <p>Calories: {nutritionData[recipe.recipe.uri].calories}</p>
-              <p>Calories: {nutritionData[recipe.recipe.uri]?.calories}</p>
               <p>Carbs: {nutritionData[recipe.recipe.uri]?.totalNutrients.CHOCDF.quantity.toFixed(2)} g</p>
               <p>Protein: {nutritionData[recipe.recipe.uri]?.totalNutrients.PROCNT.quantity.toFixed(2)} g</p>
               <p>Fats: {nutritionData[recipe.recipe.uri]?.totalNutrients.FAT.quantity.toFixed(2)} g</p>
