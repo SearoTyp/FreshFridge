@@ -8,7 +8,7 @@ const MainPage = () => {
     // Initialize ingredients from sessionStorage if available
     const savedIngredients = sessionStorage.getItem('ingredients');
     return savedIngredients ? JSON.parse(savedIngredients) : [];
-  });
+  }); 
   const [inputValue, setInputValue] = useState("");  // State to hold the current input value for ingredient name
   const [quantity, setQuantity] = useState(1);  // State to hold the quantity of the ingredient
 
@@ -56,7 +56,7 @@ const MainPage = () => {
     </div>
 
     <div style={{ position: 'relative', textAlign: 'center'}}>
-      <h1>WELCOME TO FRESHFRIDGE</h1>
+      <h1 className = "heading"> WELCOME TO FRESHFRIDGE</h1>
       <p>Track your ingredients and get recipe suggestions!</p>
     </div>
 
@@ -77,7 +77,9 @@ const MainPage = () => {
       <button onClick={addIngredient}>Add</button>
     </div>
     <div>
-      <h2 style={{ textAlign: 'center' }}>Ingredients List</h2>
+      <div style = {{ textAlign: 'center' }}>
+      <h2 className = "list-section"> Ingredients List</h2>
+      </div>
       <ul>
         {ingredients.map((ingredient, index) => (
           <li key={index}>{ingredient.name} - Quantity: {ingredient.quantity}</li>
