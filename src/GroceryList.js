@@ -23,31 +23,28 @@ const GroceryList = () => {
       const existingIndex = items.findIndex(item => item.name.toLowerCase() === name.toLowerCase());
       if (existingIndex !== -1) {
         if (window.confirm(`${name} is already in the grocery list with quantity ${items[existingIndex].quantity}. Do you want to add more?`)) {
-          const updatedItems = [...items];
-          updatedItems[existingIndex].quantity += quantity;
-          setItems(updatedItems);
+          items[existingIndex].quantity += quantity;
+          setItems([...items]);
         }
       } else {
-        setItems(prevItems => [...prevItems, { name, quantity, unit }]);
+        setItems([...items, { name, quantity, unit }]);
       }
       event.target.reset();
     }
   };
 
   const deleteGroceryItem = (index) => {
-    setItems(prevItems => prevItems.filter((_, i) => i !== index));
+    setItems(items.filter((_, i) => i !== index));
   };
 
   const updateQuantity = (index, quantity) => {
-    const updatedItems = [...items];
-    updatedItems[index].quantity = quantity;
-    setItems(updatedItems);
+    items[index].quantity = quantity;
+    setItems([...items]);
   };
 
   const updateUnit = (index, unit) => {
-    const updatedItems = [...items];
-    updatedItems[index].unit = unit;
-    setItems(updatedItems);
+    items[index].unit = unit;
+    setItems([...items]);
   };
 
   const goToMainPage = () => {
@@ -85,14 +82,14 @@ const GroceryList = () => {
         </form>
       </div>
       <div className="table-container">
-        <h3>Cart</h3>
+        <h3 style={{ textAlign: 'center' }}>Cart</h3>
         <table className="grocery-table">
           <thead>
             <tr>
               <th>Ingredient</th>
               <th>Quantity</th>
               <th>Unit</th>
-                <th></th>
+              <th></th>  {/* For the delete button */}
             </tr>
           </thead>
           <tbody>
@@ -115,7 +112,9 @@ const GroceryList = () => {
                       <option value="None">None</option>
                     </select>
                   </td>
-                  <td><button onClick={() => deleteGroceryItem(index)} className="delete-button">Delete</button></td>
+                  <td>
+                    <button onClick={() => deleteGroceryItem(index)} className="delete-button">Delete</button>
+                  </td>
                 </tr>
               ))
             ) : (

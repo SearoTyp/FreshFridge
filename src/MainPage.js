@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './MainPage.css'; // Assuming the styles are imported
-
+// hi
 const MainPage = () => {
   const navigate = useNavigate();
   const [ingredients, setIngredients] = useState(() => {

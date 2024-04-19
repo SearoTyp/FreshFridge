@@ -51,25 +51,34 @@
 
 .table-container {
   position: fixed;
-  left: 5%;
-  width: 30%; /* Make the table smaller */
-  max-height: 80%; /* Maximum height for scrollability */
-  overflow-y: auto; /* Enables vertical scrolling */
+  left: 3%;  /* Slightly to the left */
+  top: 15%;  /* Positioned a little higher up */
+  width: 30%; /* Adjusted width to prevent horizontal scrolling */
+  background-color: rgba(255, 255, 255, 0.8);  /* Same as form-container for consistency */
   border: 1px solid #ccc;
-  margin-top: 50px;
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.grocery-table input[type="number"],
-.grocery-table select {
-  width: 70px;  /* Adjust the width as needed to fit without horizontal scrolling */
+.grocery-table {
+  width: 100%;
+  border-collapse: collapse;
 }
-
 
 .grocery-table th,
 .grocery-table td {
   border: 1px solid #ddd;
   padding: 8px;
-  text-align: left;
+  text-align: center;  /* Centering the table headers and content */
+}
+
+.grocery-table input[type="number"] {
+  width: 60px;  /* Smaller inputs for better fitting */
+  border: none;  /* Remove borders */
+  background-color: transparent; /* Make background transparent */
+  text-align: center; /* Center text inside input */
 }
 
 .delete-button {
