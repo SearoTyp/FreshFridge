@@ -4,7 +4,7 @@ body {
 }
 
 .heading {
-  color: #042a7b;
+  color: #021c54;
   text-align: center;
   margin-top: 20px;
 } 
@@ -46,6 +46,10 @@ button {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.list-section {
+  color: #283156;
 }
 
 button:hover {
