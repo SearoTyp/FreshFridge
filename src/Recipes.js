@@ -70,9 +70,15 @@ const Recipes = () => {
   };
 
   const handleNutritionClick = async (recipe) => {
-    const nutritionInfo = await fetchNutritionData(recipe.ingredients);
-    setNutritionData({ ...nutritionData, [recipe.uri]: nutritionInfo });
-  };
+    if (nutritionData[recipe.uri]) {
+        const newNutritionData = { ...nutritionData };
+        delete newNutritionData[recipe.uri];  // This removes the entry, hiding the info
+        setNutritionData(newNutritionData);
+    } else {
+        const nutritionInfo = await fetchNutritionData(recipe.ingredients);
+        setNutritionData({ ...nutritionData, [recipe.uri]: nutritionInfo });
+    }
+};
 
   return (
     <div className="recipes-container">
@@ -165,6 +171,8 @@ const Recipes = () => {
         </select>
       </div>
       <button onClick={fetchRecipes}>Fetch Recipes</button>
+      <button onClick={() => navigate('/')}>Go to Ingredients List</button>
+      <button onClick={() => navigate('/grocery-list')}>Go to Grocery List</button>
       <div className="recipe-grid">
         {recipes.map((recipe, index) => (
           <div key={index} className="recipe-card">
@@ -214,8 +222,7 @@ const Recipes = () => {
           </div>
         ))}
       </div>
-      <button onClick={() => navigate('/')}>Go to Ingredients List</button>
-      <button onClick={() => navigate('/grocery-list')}>Go to Grocery List</button>
+      
     </div>
   );
 };
