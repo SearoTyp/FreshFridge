@@ -84,20 +84,20 @@ const GroceryList = () => {
           <button type="submit">Add Ingredient</button>
         </form>
       </div>
-      {items.length > 0 && (
-        <div className="table-container">
-          <h3>Cart</h3>
-          <table className="grocery-table">
-            <thead>
-              <tr>
-                <th>Ingredient</th>
-                <th>Quantity</th>
-                <th>Unit</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((item, index) => (
+      <div className="table-container">
+        <h3>Cart</h3>
+        <table className="grocery-table">
+          <thead>
+            <tr>
+              <th>Ingredient</th>
+              <th>Quantity</th>
+              <th>Unit</th>
+                <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.length > 0 ? (
+              items.map((item, index) => (
                 <tr key={index}>
                   <td>{item.name}</td>
                   <td>
@@ -117,11 +117,15 @@ const GroceryList = () => {
                   </td>
                   <td><button onClick={() => deleteGroceryItem(index)} className="delete-button">Delete</button></td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4" style={{ textAlign: 'center' }}>Your cart is empty</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

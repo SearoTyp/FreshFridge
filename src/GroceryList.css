@@ -50,19 +50,20 @@
 }
 
 .table-container {
-  position: absolute;
-  left: 0;
-  width: 20%; /* Make the table smaller */
-  max-height: 50%; /* Maximum height for scrollability */
+  position: fixed;
+  left: 5%;
+  width: 30%; /* Make the table smaller */
+  max-height: 80%; /* Maximum height for scrollability */
   overflow-y: auto; /* Enables vertical scrolling */
   border: 1px solid #ccc;
   margin-top: 50px;
 }
 
-.grocery-table {
-  width: 100%;
-  border-collapse: collapse;
+.grocery-table input[type="number"],
+.grocery-table select {
+  width: 70px;  /* Adjust the width as needed to fit without horizontal scrolling */
 }
+
 
 .grocery-table th,
 .grocery-table td {
