@@ -184,9 +184,7 @@ const Recipes = () => {
                 <p>Fats: {nutritionData[recipe.recipe.uri]?.totalNutrients.FAT.quantity.toFixed(2)} g</p>
                 <p>Cholesterol: {nutritionData[recipe.recipe.uri]?.totalNutrients.CHOLE?.quantity.toFixed(2)} mg</p>
                 <p>Sodium: {nutritionData[recipe.recipe.uri]?.totalNutrients.NA?.quantity.toFixed(2)} mg</p>
-                <p>Added Sugar: {nutritionData[recipe.recipe.uri]?.totalNutrients.SUGAR_added?.quantity.toFixed(2)} g</p>
                 <p>Calcium: {nutritionData[recipe.recipe.uri]?.totalNutrients.CA?.quantity.toFixed(2)} mg</p>
-                <p>Net Carbohydrates: {nutritionData[recipe.recipe.uri]?.totalNutrients.CHOCDF_net?.quantity.toFixed(2)} g</p>
                 <p>Fiber: {nutritionData[recipe.recipe.uri]?.totalNutrients.FIBTG?.quantity.toFixed(2)} g</p>
                 <p>Monounsaturated Fat: {nutritionData[recipe.recipe.uri]?.totalNutrients.FAMS?.quantity.toFixed(2)} g</p>
                 <p>Polyunsaturated Fat: {nutritionData[recipe.recipe.uri]?.totalNutrients.FAPU?.quantity.toFixed(2)} g</p>
@@ -199,7 +197,6 @@ const Recipes = () => {
                 <p>Phosphorus: {nutritionData[recipe.recipe.uri]?.totalNutrients.P?.quantity.toFixed(2)} mg</p>
                 <p>Potassium: {nutritionData[recipe.recipe.uri]?.totalNutrients.K?.quantity.toFixed(2)} mg</p>
                 <p>Riboflavin: {nutritionData[recipe.recipe.uri]?.totalNutrients.RIBF?.quantity.toFixed(2)} mg</p>
-                <p>Sugar Alcohol: {nutritionData[recipe.recipe.uri]?.totalNutrients.Sugar_alcohol?.quantity.toFixed(2)} g</p>
                 <p>Total Sugars: {nutritionData[recipe.recipe.uri]?.totalNutrients.SUGAR?.quantity.toFixed(2)} g</p>
                 <p>Thiamin: {nutritionData[recipe.recipe.uri]?.totalNutrients.THIA?.quantity.toFixed(2)} mg</p>
                 <p>Vitamin A: {nutritionData[recipe.recipe.uri]?.totalNutrients.VITA_RAE?.quantity.toFixed(2)} µg</p>
