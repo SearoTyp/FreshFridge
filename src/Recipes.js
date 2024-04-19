@@ -171,6 +171,8 @@ const Recipes = () => {
         </select>
       </div>
       <button onClick={fetchRecipes}>Fetch Recipes</button>
+      <button onClick={() => navigate('/')}>Go to Ingredients List</button>
+      <button onClick={() => navigate('/grocery-list')}>Go to Grocery List</button>
       <div className="recipe-grid">
         {recipes.map((recipe, index) => (
           <div key={index} className="recipe-card">
@@ -220,8 +222,7 @@ const Recipes = () => {
           </div>
         ))}
       </div>
-      <button onClick={() => navigate('/')}>Go to Ingredients List</button>
-      <button onClick={() => navigate('/grocery-list')}>Go to Grocery List</button>
+      
     </div>
   );
 };
