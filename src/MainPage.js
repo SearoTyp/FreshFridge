@@ -17,6 +17,14 @@ const MainPage = () => {
     sessionStorage.setItem('ingredients', JSON.stringify(ingredients));
   }, [ingredients]);
 
+//function to have user press enter key
+  const handleKeyPress = ({ nativeEvent }) => {
+    if (nativeEvent.key === 'Enter') {
+      addIngredient();
+    }
+  };
+
+
   // Function to add an ingredient to the list
   const addIngredient = () => {
     if (inputValue.trim() !== "" && quantity > 0) {
@@ -66,6 +74,7 @@ const MainPage = () => {
         placeholder="Add an ingredient"
         value={inputValue}
         onChange={e => setInputValue(e.target.value)}
+        onKeyPress={handleKeyPress}
       />
       <input
         type="number"
