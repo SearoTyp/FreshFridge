@@ -18,7 +18,11 @@ const GroceryList = () => {
     event.preventDefault();
     const name = event.target.elements.name.value.trim();
     const quantity = event.target.elements.quantity.valueAsNumber;
-    const unit = event.target.elements.unit.value;
+    let unit = event.target.elements.unit.value;
+    // Set default unit to "N/A" if no unit is selected
+    if (!unit) {
+      unit = 'N/A';
+    }
     if (name && quantity > 0) {
       const existingIndex = items.findIndex(item => item.name.toLowerCase() === name.toLowerCase());
       if (existingIndex !== -1) {
@@ -32,7 +36,6 @@ const GroceryList = () => {
       event.target.reset();
     }
   };
-
   const deleteGroceryItem = (index) => {
     setItems(items.filter((_, i) => i !== index));
   };
@@ -67,7 +70,8 @@ const GroceryList = () => {
           <input type="text" name="name" pattern="[A-Za-z]+" title="Please enter only letters" placeholder="Ingredient Name" required />
           <div className="input-group">
             <input type="number" name="quantity" placeholder="Quantity" required min="1" />
-            <select name="unit">
+            <select name="unit" defaultValue="">
+              <option value="" disabled>Unit</option>
               <option value="gallon">Gallon(s)</option>
               <option value="cup">Cup(s)</option>
               <option value="ounce">Ounce(s)</option>
@@ -75,7 +79,7 @@ const GroceryList = () => {
               <option value="teaspoon">Teaspoon(s)</option>
               <option value="liter">Liter(s)</option>
               <option value="milliliter">Milliliter(s)</option>
-              <option value="None">None</option>
+              <option value="N/A">N/A</option>
             </select>
           </div>
           <button type="submit">Add Ingredient</button>
@@ -109,7 +113,7 @@ const GroceryList = () => {
                       <option value="teaspoon">Teaspoon(s)</option>
                       <option value="liter">Liter(s)</option>
                       <option value="milliliter">Milliliter(s)</option>
-                      <option value="None">None</option>
+                      <option value="N/A">N/A</option>
                     </select>
                   </td>
                   <td>
