@@ -24,7 +24,6 @@ const MainPage = () => {
     }
   };
 
-
   // Function to add an ingredient to the list
   const addIngredient = () => {
     if (inputValue.trim() !== "" && quantity > 0) {
@@ -45,6 +44,11 @@ const MainPage = () => {
       setQuantity(1); // Reset quantity to default
     }
   };
+
+//function to delete item
+const deleteIngredientItem = (index) => {
+  setIngredients(ingredients.filter((_, i) => i !== index));
+};
 
   // Function to navigate to the GroceryList page
   const goToGroceryList = () => {
@@ -91,7 +95,9 @@ const MainPage = () => {
       </div>
       <ul>
         {ingredients.map((ingredient, index) => (
-          <li key={index}>{ingredient.name} - Quantity: {ingredient.quantity}</li>
+          <li key={index}>{ingredient.name} - Quantity: {ingredient.quantity}
+          <button onClick={() => deleteIngredientItem(index)}>Delete</button>
+          </li>
         ))}
       </ul>
     </div>
