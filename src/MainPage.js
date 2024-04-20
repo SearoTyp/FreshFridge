@@ -68,11 +68,11 @@ const deleteIngredientItem = (index) => {
   return (
     //opened fridge picture
   <div className="mainpage-container" style={{ backgroundImage: 'url(/images/steelfridge.JPG)' }}>
-    <div style={{ position: 'relative', textAlign: 'center'}}>
-      <h1 className = "heading"> WHATS IN YOUR FRIDGE?</h1>
+    <div style={{ position: 'relative', textAlign: 'right', marginTop: '50px', marginRight: '240px', marginLeft: '20px' }}>
+      <h1 className = "heading" style={{ marginBottom: '20px', textAlign: 'right' }}> WHATS IN YOUR FRIDGE?</h1>
     </div>
 
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ position: 'relative', textAlign: 'right', marginTop: '50px', marginRight: '240px', marginLeft: '20px'  }}>
       <input
         type="text"
         placeholder="Add an ingredient"
@@ -90,7 +90,7 @@ const deleteIngredientItem = (index) => {
       <button onClick={addIngredient}>Add</button>
     </div>
     <div>
-      <div style = {{ textAlign: 'center' }}>
+      <div style = {{ position: 'relative', textAlign: 'right', marginTop: '50px', marginRight: '340px', marginLeft: '20px'  }}>
       <h2 className = "list-section"> Ingredients List</h2>
       </div>
       <ul>
@@ -102,20 +102,20 @@ const deleteIngredientItem = (index) => {
       </ul>
     </div>
 
-    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-  <div className="buttons-container" style={{ marginRight: '20px', textAlign: 'center' }}>
-  <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <button onClick={goToHomepage} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Homepage</button>
-    </div>
-  </div>
-  <div className="buttons-container" style={{ marginRight: '20px', textAlign: 'center' }}>
-  <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <button onClick={goToGroceryList} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Grocery List</button>
-    </div>
-  </div>
-  <div className="buttons-container" style={{ textAlign: 'center' }}>
+    <div style={{ marginTop: '20px', marginRight: '160px', textAlign: 'center' }}>
+  <div className="buttons-container" style={{ marginBottom: '20px', width: '170px', marginLeft: '415px' }}>
     <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <button onClick={goToRecipes} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Recipes</button>
+      <button onClick={goToHomepage} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '10px' }}>Go to Homepage</button>
+    </div>
+  </div>
+  <div className="buttons-container" style={{ marginBottom: '20px', width: '170px', marginLeft: '415px' }}>
+    <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <button onClick={goToGroceryList} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '10px' }}>Go to Grocery List</button>
+    </div>
+  </div>
+  <div className="buttons-container" style={{ width: '170px', marginLeft: '415px' }}>
+    <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <button onClick={goToRecipes} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '10px' }}>Go to Recipes</button>
     </div>
   </div>
 </div>
