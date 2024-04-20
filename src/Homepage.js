@@ -75,58 +75,23 @@ const deleteIngredientItem = (index) => {
       <h1 className = "heading"> WELCOME TO FRESHFRIDGE</h1>
       <p>Track your ingredients and get recipe suggestions!</p>
     </div>
-
-    <div style={{ textAlign: 'center' }}>
-      <input
-        type="text"
-        placeholder="Add an ingredient"
-        value={inputValue}
-        onChange={e => setInputValue(e.target.value)}
-        onKeyPress={handleKeyPress}
-      />
-      <input
-        type="number"
-        placeholder="Quantity"
-        value={quantity}
-        onChange={e => setQuantity(Number(e.target.value))}
-        min="1"
-      />
-      <button onClick={addIngredient}>Add</button>
-    </div>
-    <div>
-      <div style = {{ textAlign: 'center' }}>
-      <h2 className = "list-section"> Ingredients List</h2>
-      </div>
-      <ul>
-        {ingredients.map((ingredient, index) => (
-          <li key={index}>{ingredient.name} - Quantity: {ingredient.quantity}
-          <button onClick={() => deleteIngredientItem(index)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-    </div>
-
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-<div className="buttons-container" style={{textAlign: 'center'}}>
-  <div style = {{maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-  <a href = "/ingredients">
-<img src = "/images/ingredients.JPG" alt = "ingredients" style={{ maxWidth: '100%', height: 'auto', maxHeight: '300px' }} />
-</a>
-<button onClick={goToMainPage} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Ingredients</button>
-  </div>
-  </div>
-  <div className="buttons-container" style={{ marginRight: '20px', textAlign: 'center' }}>
-    <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <a href="/grocery-list">
-        <img src="/images/groceries.JPG" alt="groceries" style={{ maxWidth: '100%', height: 'auto', maxHeight: '300px' }} />
+  <div className="buttons-container" style={{ display: 'flex', justifyContent: 'space-between', width: '80%', maxWidth: '1200px' }}>
+    <div style={{ flex: 1, textAlign: 'center' }}>
+      <a href="/" onClick={goToMainPage}>
+        <img src="/images/ingredients.JPG" alt="ingredients" style={{ width: '100%', height: '300px', objectFit: 'cover' }} />
+      </a>
+      <button onClick={goToMainPage} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Ingredients</button>
+    </div>
+    <div style={{ flex: 1, textAlign: 'center', margin: '0 20px' }}>
+      <a href="/grocery-list" onClick={goToGroceryList}>
+        <img src="/images/groceries.JPG" alt="groceries" style={{ width: '100%', height: '300px', objectFit: 'cover' }} />
       </a>
       <button onClick={goToGroceryList} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Grocery List</button>
     </div>
-  </div>
-  <div className="buttons-container" style={{ textAlign: 'center' }}>
-    <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <a href="/recipes">
-        <img src="/images/cookbook.JPG" alt="cookbook" style={{ maxWidth: '100%', height: 'auto', maxHeight: '300px' }} />
+    <div style={{ flex: 1, textAlign: 'center' }}>
+      <a href="/recipes" onClick={goToRecipes}>
+        <img src="/images/cookbook.JPG" alt="cookbook" style={{ width: '100%', height: '300px', objectFit: 'cover' }} />
       </a>
       <button onClick={goToRecipes} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Recipes</button>
     </div>
