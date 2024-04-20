@@ -17,6 +17,13 @@ const MainPage = () => {
     sessionStorage.setItem('ingredients', JSON.stringify(ingredients));
   }, [ingredients]);
 
+//function to have user press enter key
+  const handleKeyPress = ({ nativeEvent }) => {
+    if (nativeEvent.key === 'Enter') {
+      addIngredient();
+    }
+  };
+
   // Function to add an ingredient to the list
   const addIngredient = () => {
     if (inputValue.trim() !== "" && quantity > 0) {
@@ -38,6 +45,11 @@ const MainPage = () => {
     }
   };
 
+//function to delete item
+const deleteIngredientItem = (index) => {
+  setIngredients(ingredients.filter((_, i) => i !== index));
+};
+
   // Function to navigate to the GroceryList page
   const goToGroceryList = () => {
     navigate('/grocery-list'); // Navigate to the grocery list page
@@ -56,7 +68,7 @@ const MainPage = () => {
     </div>
 
     <div style={{ position: 'relative', textAlign: 'center'}}>
-      <h1>WELCOME TO FRESHFRIDGE</h1>
+      <h1 className = "heading"> WELCOME TO FRESHFRIDGE</h1>
       <p>Track your ingredients and get recipe suggestions!</p>
     </div>
 
@@ -66,6 +78,7 @@ const MainPage = () => {
         placeholder="Add an ingredient"
         value={inputValue}
         onChange={e => setInputValue(e.target.value)}
+        onKeyPress={handleKeyPress}
       />
       <input
         type="number"
@@ -77,10 +90,14 @@ const MainPage = () => {
       <button onClick={addIngredient}>Add</button>
     </div>
     <div>
-      <h2 style={{ textAlign: 'center' }}>Ingredients List</h2>
+      <div style = {{ textAlign: 'center' }}>
+      <h2 className = "list-section"> Ingredients List</h2>
+      </div>
       <ul>
         {ingredients.map((ingredient, index) => (
-          <li key={index}>{ingredient.name} - Quantity: {ingredient.quantity}</li>
+          <li key={index}>{ingredient.name} - Quantity: {ingredient.quantity}
+          <button onClick={() => deleteIngredientItem(index)}>Delete</button>
+          </li>
         ))}
       </ul>
     </div>

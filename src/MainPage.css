@@ -3,8 +3,8 @@ body {
   font-family: 'Arial', sans-serif;
 }
 
-h1 {
-  color: #f8f8f8;
+.heading {
+  color: #021c54;
   text-align: center;
   margin-top: 20px;
 } 
@@ -46,6 +46,10 @@ button {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.list-section {
+  color: #283156;
 }
 
 button:hover {
