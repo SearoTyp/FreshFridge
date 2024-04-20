@@ -59,6 +59,10 @@ const deleteIngredientItem = (index) => {
   const goToRecipes = () => {
     navigate('/recipes'); // Navigate to the recipes page
   };
+//Function to navigate to mainpage
+  const goToMainPage = () => {
+    navigate('/');
+  };
 
   return (
     //opened fridge picture
@@ -103,6 +107,14 @@ const deleteIngredientItem = (index) => {
     </div>
 
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+<div className="buttons-container" style={{textAlign: 'center'}}>
+  <div style = {{maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+  <a href = "/ingredients">
+<img src = "/images/ingredients.JPG" alt = "ingredients" style={{ maxWidth: '100%', height: 'auto', maxHeight: '300px' }} />
+</a>
+<button onClick={goToMainPage} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Ingredients</button>
+  </div>
+  </div>
   <div className="buttons-container" style={{ marginRight: '20px', textAlign: 'center' }}>
     <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <a href="/grocery-list">

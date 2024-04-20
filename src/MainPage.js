@@ -67,14 +67,9 @@ const deleteIngredientItem = (index) => {
 
   return (
     //opened fridge picture
-  <div>
-   <div style = {{ position: 'relative', width: '100%', height: 'auto', textAlign: 'center' }}>
-      <img src="/images/openfridgeimage.JPG" alt="food in fridge" style={{ width: '100%', height: 'auto', maxHeight: '40vh', objectFit: 'cover' }} />
-    </div>
-
+  <div className="mainpage-container" style={{ backgroundImage: 'url(/images/steelfridge.JPG)' }}>
     <div style={{ position: 'relative', textAlign: 'center'}}>
-      <h1 className = "heading"> WELCOME TO FRESHFRIDGE</h1>
-      <p>Track your ingredients and get recipe suggestions!</p>
+      <h1 className = "heading"> WHATS IN YOUR FRIDGE?</h1>
     </div>
 
     <div style={{ textAlign: 'center' }}>
@@ -109,12 +104,12 @@ const deleteIngredientItem = (index) => {
 
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
   <div className="buttons-container" style={{ marginRight: '20px', textAlign: 'center' }}>
-    <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <button onClick={goToHomepage} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Homepage</button>
     </div>
   </div>
   <div className="buttons-container" style={{ marginRight: '20px', textAlign: 'center' }}>
-    <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <button onClick={goToGroceryList} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Grocery List</button>
     </div>
   </div>
