@@ -17,9 +17,12 @@ const GroceryList = () => {
   const addGroceryItem = (event) => {
     event.preventDefault();
     const name = event.target.elements.name.value.trim();
-    const quantity = event.target.elements.quantity.valueAsNumber;
-    const unit = event.target.elements.unit.value;
-    if (name && quantity > 0) {
+    const quantity = event.target.elements.quantity.value.trim();
+    var unit = event.target.elements.unit.value;
+    if (!unit) {
+      unit = 'N/A';
+    }
+    if (name && quantity) {
       const existingIndex = items.findIndex(item => item.name.toLowerCase() === name.toLowerCase());
       if (existingIndex !== -1) {
         if (window.confirm(`${name} is already in the grocery list with quantity ${items[existingIndex].quantity}. Do you want to add more?`)) {
@@ -35,11 +38,6 @@ const GroceryList = () => {
 
   const deleteGroceryItem = (index) => {
     setItems(items.filter((_, i) => i !== index));
-  };
-
-  const updateQuantity = (index, quantity) => {
-    items[index].quantity = quantity;
-    setItems([...items]);
   };
 
   const updateUnit = (index, unit) => {
@@ -66,16 +64,20 @@ const GroceryList = () => {
         <form onSubmit={addGroceryItem} className="grocery-form">
           <input type="text" name="name" pattern="[A-Za-z]+" title="Please enter only letters" placeholder="Ingredient Name" required />
           <div className="input-group">
-            <input type="number" name="quantity" placeholder="Quantity" required min="1" />
-            <select name="unit">
+            <input type="text" name="quantity" placeholder="Quantity" required />
+            <select name="unit" defaultValue="">
+              <option value="" disabled>Unit</option>
               <option value="gallon">Gallon(s)</option>
               <option value="cup">Cup(s)</option>
               <option value="ounce">Ounce(s)</option>
               <option value="tablespoon">Tablespoon(s)</option>
               <option value="teaspoon">Teaspoon(s)</option>
+              <option value="gram">Gram(s)</option>
+              <option value="quart">Quart(s)</option>
+              <option value="pint">Pint(s)</option>
               <option value="liter">Liter(s)</option>
               <option value="milliliter">Milliliter(s)</option>
-              <option value="None">None</option>
+              <option value="N/A">N/A</option>
             </select>
           </div>
           <button type="submit">Add Ingredient</button>
@@ -97,9 +99,7 @@ const GroceryList = () => {
               items.map((item, index) => (
                 <tr key={index}>
                   <td>{item.name}</td>
-                  <td>
-                    <input type="number" value={item.quantity} onChange={(e) => updateQuantity(index, Number(e.target.value))} min="0" />
-                  </td>
+                  <td>{item.quantity}</td>
                   <td>
                     <select value={item.unit} onChange={(e) => updateUnit(index, e.target.value)}>
                       <option value="gallon">Gallon(s)</option>
@@ -107,9 +107,12 @@ const GroceryList = () => {
                       <option value="ounce">Ounce(s)</option>
                       <option value="tablespoon">Tablespoon(s)</option>
                       <option value="teaspoon">Teaspoon(s)</option>
+                      <option value="gram">Gram(s)</option>
+                      <option value="quart">Quart(s)</option>
+                      <option value="pint">Pint(s)</option>
                       <option value="liter">Liter(s)</option>
                       <option value="milliliter">Milliliter(s)</option>
-                      <option value="None">None</option>
+                      <option value="N/A">N/A</option>
                     </select>
                   </td>
                   <td>
