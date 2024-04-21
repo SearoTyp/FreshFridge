@@ -61,7 +61,7 @@ const deleteIngredientItem = (index) => {
   };
 //Function to navigate to mainpage
   const goToMainPage = () => {
-    navigate('/');
+    navigate('/MainPage');
   };
 
   return (
@@ -78,7 +78,7 @@ const deleteIngredientItem = (index) => {
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
   <div className="buttons-container" style={{ display: 'flex', justifyContent: 'space-between', width: '80%', maxWidth: '1200px' }}>
     <div style={{ flex: 1, textAlign: 'center' }}>
-      <a href="/" onClick={goToMainPage}>
+      <a href="/MainPage" onClick={goToMainPage}>
         <img src="/images/ingredients.JPG" alt="ingredients" style={{ width: '100%', height: '300px', objectFit: 'cover' }} />
       </a>
       <button onClick={goToMainPage} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Ingredients</button>

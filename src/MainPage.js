@@ -62,8 +62,8 @@ const deleteIngredientItem = (index) => {
 
   // Function to navigate to the homepage
   const goToHomepage = () => {
-    navigate('/homepage'); // Navigate to the homepage
-  };
+    navigate('/'); // Navigate to the homepage
+};
 
   return (
     //opened fridge picture

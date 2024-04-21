@@ -46,7 +46,7 @@ const GroceryList = () => {
   };
 
   const goToMainPage = () => {
-    navigate('/');
+    navigate('/mainpage');
   };
 
   const goToRecipes = () => {

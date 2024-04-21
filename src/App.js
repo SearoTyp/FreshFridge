@@ -12,13 +12,12 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<Homepage />} />
         <Route path="/grocery-list" element={<GroceryList />} />
         <Route path="/recipes" element={<Recipes />} />
-        <Route path="/homepage" element={<Homepage />} />
+        <Route path="/MainPage" element={<MainPage />} />
       </Routes>
     </BrowserRouter>
   );
 };
-
 export default App;
