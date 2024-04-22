@@ -27,43 +27,48 @@ const fetchCookingInstructions = async (recipe) => {
   }
 };
 
-  useEffect(() => {
-    const storedIngredients = JSON.parse(sessionStorage.getItem('ingredients') || '[]');
-    setAllIngredients(storedIngredients);
-  }, []);
+useEffect(() => {
+  const storedIngredients = JSON.parse(sessionStorage.getItem('ingredients') || '[]');
+  setAllIngredients(storedIngredients);
+}, []);
 
-  const handleIngredientChange = ingredient => {
-    setSelectedIngredients(prev => 
-      prev.includes(ingredient) ? prev.filter(i => i !== ingredient) : [...prev, ingredient]
-    );
-  };
+const handleIngredientChange = ingredient => {
+  setSelectedIngredients(prev => 
+    prev.includes(ingredient) ? prev.filter(i => i !== ingredient) : [...prev, ingredient]
+  );
+};
 
-  const fetchRecipes = async () => {
-    const query = selectedIngredients.map(item => item.name).join(',');
-    const url = `https://api.edamam.com/search?q=${query}&app_id=4bac8aa9&app_key=5de18e0d04cd5dd3685c82bb2aff5bad&diet=${diet}&mealType=${mealType}&health=${healthLabels}&cuisineType=${cuisineType}`;
+const fetchRecipes = async () => {
+  const query = selectedIngredients.map(item => item.name).join(',');
+  const url = `https://api.edamam.com/search?q=${query}&app_id=4bac8aa9&app_key=5de18e0d04cd5dd3685c82bb2aff5bad&diet=${diet}&mealType=${mealType}&health=${healthLabels}&cuisineType=${cuisineType}`;
 
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      setRecipes(data.hits || []);
-    } catch (error) {
-      console.error("Failed to fetch recipes", error);
-      setRecipes([]);
-    }
-  };
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    setRecipes(data.hits || []);
+  } catch (error) {
+    console.error("Failed to fetch recipes", error);
+    setRecipes([]);
+  }
+};
 
-  const addMissingItemsToGroceryList = (recipe) => {
-    const recipeIngredients = recipe.ingredients.map(ing => ing.food);
-    const existingGroceryItems = JSON.parse(sessionStorage.getItem('groceryItems') || '[]');
-    const newGroceryItems = recipeIngredients.filter(ing => 
-      !allIngredients.some(item => item.name === ing) &&
-      !existingGroceryItems.some(item => item.name === ing)
-    );
+const addMissingItemsToGroceryList = (recipe) => {
+  const recipeIngredients = recipe.ingredients.map(ing => ({
+    name: ing.food,
+    quantity: ing.quantity ? ing.quantity : 'N/A',  // Set to 'N/A' if no quantity is provided
+    unit: ing.measure ? ing.measure : 'N/A'  // Set to 'N/A' if no unit is provided
+  }));
+  const existingGroceryItems = JSON.parse(sessionStorage.getItem('groceryItems') || '[]');
+  const newGroceryItems = recipeIngredients.filter(ing => 
+    !allIngredients.some(item => item.name === ing.name) &&
+    !existingGroceryItems.some(item => item.name === ing.name)
+  );
 
-    const updatedGroceryList = [...existingGroceryItems, ...newGroceryItems.map(ing => ({ name: ing }))];
-    sessionStorage.setItem('groceryItems', JSON.stringify(updatedGroceryList));
-    navigate('/grocery-list');
-  };
+  const updatedGroceryList = [...existingGroceryItems, ...newGroceryItems];
+  sessionStorage.setItem('groceryItems', JSON.stringify(updatedGroceryList));
+  navigate('/grocery-list');
+};
+
 
   const fetchNutritionData = async (ingredients) => {
     const url = `https://api.edamam.com/api/nutrition-details?app_id=b4b0910c&app_key=5b7e28ee49040bc75af20c8b3eea4dfb`;

@@ -67,7 +67,7 @@ const GroceryList = () => {
             <input type="text" name="quantity" placeholder="Quantity" required />
             <select name="unit" defaultValue="">
               <option value="" disabled>Unit</option>
-              <option value="gallon">Gallon(s)</option>
+              <option value="N/A">N/A</option>
               <option value="cup">Cup(s)</option>
               <option value="ounce">Ounce(s)</option>
               <option value="tablespoon">Tablespoon(s)</option>
@@ -77,7 +77,7 @@ const GroceryList = () => {
               <option value="pint">Pint(s)</option>
               <option value="liter">Liter(s)</option>
               <option value="milliliter">Milliliter(s)</option>
-              <option value="N/A">N/A</option>
+              <option value="gallon">Gallon(s)</option>
             </select>
           </div>
           <button type="submit">Add Ingredient</button>
@@ -102,7 +102,7 @@ const GroceryList = () => {
                   <td>{item.quantity}</td>
                   <td>
                     <select value={item.unit} onChange={(e) => updateUnit(index, e.target.value)}>
-                      <option value="gallon">Gallon(s)</option>
+                    <option value="N/A">N/A</option>
                       <option value="cup">Cup(s)</option>
                       <option value="ounce">Ounce(s)</option>
                       <option value="tablespoon">Tablespoon(s)</option>
@@ -112,7 +112,7 @@ const GroceryList = () => {
                       <option value="pint">Pint(s)</option>
                       <option value="liter">Liter(s)</option>
                       <option value="milliliter">Milliliter(s)</option>
-                      <option value="N/A">N/A</option>
+                      <option value="gallon">Gallon(s)</option>
                     </select>
                   </td>
                   <td>
