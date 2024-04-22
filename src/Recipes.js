@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Recipes.css';
+import axios from 'axios';
 
 const Recipes = () => {
   const navigate = useNavigate();
@@ -12,6 +13,19 @@ const Recipes = () => {
   const [mealType, setMealType] = useState('');
   const [healthLabels, setHealthLabels] = useState('');
   const [cuisineType, setCuisineType] = useState('');
+
+  // Attempt at cooking instructions
+const [cookingInstructions, setCookingInstructions] = useState('');
+const fetchCookingInstructions = async (recipe) => {
+  try {
+    const response = await axios.get(`https://api.spoonacular.com/recipes/${recipe.recipe.id}/analyzedInstructions?apiKey=bca5e39e0b19471c8dcbdc384013ee3b`);
+    const instructions = response.data[0]?.steps.map(step => step.step).join('\n');
+    setCookingInstructions(instructions);
+  } catch (error) {
+    console.error('Failed to fetch cooking instructions', error);
+    setCookingInstructions('');
+  }
+};
 
   useEffect(() => {
     const storedIngredients = JSON.parse(sessionStorage.getItem('ingredients') || '[]');
@@ -69,16 +83,20 @@ const Recipes = () => {
     }
   };
 
+
+  // Edited for cooking instructions
   const handleNutritionClick = async (recipe) => {
     if (nutritionData[recipe.uri]) {
-        const newNutritionData = { ...nutritionData };
-        delete newNutritionData[recipe.uri];  // This removes the entry, hiding the info
-        setNutritionData(newNutritionData);
+      const newNutritionData = { ...nutritionData };
+      delete newNutritionData[recipe.uri]; // This removes the entry, hiding the info
+      setNutritionData(newNutritionData);
+      setCookingInstructions(''); // Clear the cooking instructions
     } else {
-        const nutritionInfo = await fetchNutritionData(recipe.ingredients);
-        setNutritionData({ ...nutritionData, [recipe.uri]: nutritionInfo });
+      const nutritionInfo = await fetchNutritionData(recipe.ingredients);
+      setNutritionData({ ...nutritionData, [recipe.uri]: nutritionInfo });
+      fetchCookingInstructions(recipe); // Fetch the cooking instructions
     }
-};
+  };
 
   return (
     <div className="recipes-container" style={{ backgroundImage: 'url(/images/recipebackground.jpeg)' }}> 
@@ -171,20 +189,20 @@ const Recipes = () => {
         </select>
       </div>
       <button onClick={fetchRecipes}>Fetch Recipes</button>
-      <button onClick={() => navigate('/MainPage')}>Go to Ingredients List</button>
+      <button onClick={() => navigate('/')}>Go to Ingredients List</button>
       <button onClick={() => navigate('/grocery-list')}>Go to Grocery List</button>
       <div className="recipe-grid">
-        {recipes.map((recipe, index) => (
-          <div key={index} className="recipe-card">
-            <h3>{recipe.recipe.label}</h3>
-            <img src={recipe.recipe.image} alt={recipe.recipe.label} style={{ maxWidth: '100px', maxHeight: '100px' }} />
-            <ul>
-              {recipe.recipe.ingredients.map(ing => <li key={ing.foodId}>{ing.text}</li>)}
-            </ul>
-            <button onClick={() => addMissingItemsToGroceryList(recipe.recipe)}>Add Missing Items to Grocery List</button>
-            <button onClick={() => handleNutritionClick(recipe.recipe)}>Get Nutrition Info</button>
-            {nutritionData[recipe.recipe.uri] && (
-              <div className="nutrition-details">
+  {recipes.map((recipe, index) => (
+    <div key={index} className="recipe-card">
+      <h3>{recipe.recipe.label}</h3>
+      <img src={recipe.recipe.image} alt={recipe.recipe.label} style={{ maxWidth: '100px', maxHeight: '100px' }} />
+      <ul>
+        {recipe.recipe.ingredients.map(ing => <li key={ing.foodId}>{ing.text}</li>)}
+      </ul>
+      <button onClick={() => addMissingItemsToGroceryList(recipe.recipe)}>Add Missing Items to Grocery List</button>
+      <button onClick={() => handleNutritionClick(recipe.recipe)}>Get Nutrition Info</button>
+      {nutritionData[recipe.recipe.uri] && (
+        <div className="nutrition-details">
                 <h4>Nutrition Details:</h4>
                 <p>Calories: {nutritionData[recipe.recipe.uri].calories}</p>
                 <p>Carbs: {nutritionData[recipe.recipe.uri]?.totalNutrients.CHOCDF.quantity.toFixed(2)} g</p>
@@ -219,11 +237,16 @@ const Recipes = () => {
                 {/* Additional nutrients can be added here */}
               </div>
             )}
-          </div>
-        ))}
-      </div>
-      
+            {cookingInstructions && (
+        <div>
+          <h4>Cooking Instructions:</h4>
+          <p>{cookingInstructions}</p>
+        </div>
+      )}
     </div>
+  ))}
+</div>
+</div>
   );
 };
 
