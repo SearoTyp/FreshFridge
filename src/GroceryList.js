@@ -62,7 +62,7 @@ const GroceryList = () => {
       <div className="form-container">
         <h2>What are we shopping for?</h2>
         <form onSubmit={addGroceryItem} className="grocery-form">
-          <input type="text" name="name" pattern="[A-Za-z]+" title="Please enter only letters" placeholder="Ingredient Name" required />
+          <input type="text" name="name" pattern="[A-Za-z ]+" title="Please enter only letters and spaces" placeholder="Ingredient Name" required />
           <div className="input-group">
             <input type="text" name="quantity" placeholder="Quantity" required />
             <select name="unit" defaultValue="">
