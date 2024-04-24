@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Recipes.css';
-import axios from 'axios';
 
 const Recipes = () => {
   const navigate = useNavigate();
@@ -13,19 +12,6 @@ const Recipes = () => {
   const [mealType, setMealType] = useState('');
   const [healthLabels, setHealthLabels] = useState('');
   const [cuisineType, setCuisineType] = useState('');
-
-  // Attempt at cooking instructions
-const [cookingInstructions, setCookingInstructions] = useState('');
-const fetchCookingInstructions = async (recipe) => {
-  try {
-    const response = await axios.get(`https://api.spoonacular.com/recipes/${recipe.recipe.id}/analyzedInstructions?apiKey=bca5e39e0b19471c8dcbdc384013ee3b`);
-    const instructions = response.data[0]?.steps.map(step => step.step).join('\n');
-    setCookingInstructions(instructions);
-  } catch (error) {
-    console.error('Failed to fetch cooking instructions', error);
-    setCookingInstructions('');
-  }
-};
 
 useEffect(() => {
   const storedIngredients = JSON.parse(sessionStorage.getItem('ingredients') || '[]');
@@ -89,17 +75,14 @@ const addMissingItemsToGroceryList = (recipe) => {
   };
 
 
-  // Edited for cooking instructions
   const handleNutritionClick = async (recipe) => {
     if (nutritionData[recipe.uri]) {
       const newNutritionData = { ...nutritionData };
       delete newNutritionData[recipe.uri]; // This removes the entry, hiding the info
       setNutritionData(newNutritionData);
-      setCookingInstructions(''); // Clear the cooking instructions
     } else {
       const nutritionInfo = await fetchNutritionData(recipe.ingredients);
       setNutritionData({ ...nutritionData, [recipe.uri]: nutritionInfo });
-      fetchCookingInstructions(recipe); // Fetch the cooking instructions
     }
   };
 
@@ -240,18 +223,15 @@ const addMissingItemsToGroceryList = (recipe) => {
                 <p>Zinc: {nutritionData[recipe.recipe.uri]?.totalNutrients.ZN?.quantity.toFixed(2)} mg</p>
                 <p>Water: {nutritionData[recipe.recipe.uri]?.totalNutrients.WATER?.quantity.toFixed(2)} g</p>
                 {/* Additional nutrients can be added here */}
-              </div>
-            )}
-            {cookingInstructions && (
-        <div>
+                </div>
+                )}
+            <div>
           <h4>Cooking Instructions:</h4>
-          <p>{cookingInstructions}</p>
         </div>
-      )}
+      </div>
+     ))}
     </div>
-  ))}
-</div>
-</div>
+  </div>
   );
 };
 
