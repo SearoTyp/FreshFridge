@@ -177,7 +177,7 @@ const addMissingItemsToGroceryList = (recipe) => {
         </select>
       </div>
       <button onClick={fetchRecipes}>Fetch Recipes</button>
-      <button onClick={() => navigate('/')}>Go to Ingredients List</button>
+      <button onClick={() => navigate('/MainPage')}>Go to Ingredients List</button>
       <button onClick={() => navigate('/grocery-list')}>Go to Grocery List</button>
       <div className="recipe-grid">
   {recipes.map((recipe, index) => (
