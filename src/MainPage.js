@@ -92,7 +92,8 @@ const deleteIngredientItem = (index) => {
     <div>
       <div style = {{ position: 'relative', textAlign: 'right', marginTop: '50px', marginRight: '340px', marginLeft: '20px'  }}>
       <h2 className = "list-section"> Ingredients List</h2>
-      </div>
+      </div> {/*
+    <div classname = "ingredients-container"> 
       <ul>
         {ingredients.map((ingredient, index) => (
           <li key={index}>{ingredient.name} - Quantity: {ingredient.quantity}
@@ -100,9 +101,33 @@ const deleteIngredientItem = (index) => {
           </li>
         ))}
       </ul>
-    </div>
-
-    <div style={{ marginTop: '20px', marginRight: '160px', textAlign: 'center' }}>
+    </div> */}
+    <div className="ingredients-container">
+    <table className="ingredients-table">
+          <thead>
+            <tr>
+              <th>Ingredient</th>
+              <th>Quantity</th>
+              <th></th>  {/* For the delete button */}
+            </tr>
+          </thead>
+          <tbody>
+            {ingredients.length > 0 ? (
+              ingredients.map((ingredient, index) => (
+                <tr key={index}>
+                  <td>{ingredient.name}</td>
+                  <td>{ingredient.quantity}</td>
+                  <td>
+                    <button onClick={() => deleteIngredientItem(index)} className="delete-button">Delete</button>
+                  </td>
+                </tr>
+              ))
+            ): null }
+          </tbody>
+        </table>
+        </div>
+        </div>
+        <div style={{ marginTop: '20px', marginRight: '160px', textAlign: 'center' }}>
   <div className="buttons-container" style={{ marginBottom: '20px', width: '170px', marginLeft: '415px' }}>
     <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <button onClick={goToHomepage} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '10px' }}>Go to Homepage</button>

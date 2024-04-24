@@ -61,9 +61,23 @@ button:hover {
   background-color: #ffa726;
 }
 
+.ingredients-table{
+  position: absolute;
+  margin-right: 1000px; 
+  margin-left: auto;
+}
+
+.ingredients-container {
+  position: absolute;
+  right: 500px; /* adjust ingredients table */
+  top: 300px; /* adjust ingredients table */
+}
+
 ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
+  text-align: center;
 }
 
 li {
@@ -73,7 +87,7 @@ li {
   padding: 10px;
   border-radius: 5px;
   width: 200px;
-  text-align: center;
+  margin-right: 20px; 
 }
 
 .error-message {
@@ -84,11 +98,12 @@ li {
 }
 
 .container {
-  text-align: center;
+  text-align: right;
 }
 
-.buttons {
+.buttons-container {
   display: flex;
   justify-content: center;
-  gap: 20px; /*space between buttons*/
+  gap: 20px;
+  margin-top: 20px;
 }
