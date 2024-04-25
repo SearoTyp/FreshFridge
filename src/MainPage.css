@@ -8,8 +8,8 @@
   overflow: hidden; /* Prevents the white space at the top */
 }
 
-.heading {
-  color: #021c54;
+.ingredients-heading {
+  color: white;
   text-align: right;
   margin-top: 20px;
 } 
@@ -45,16 +45,16 @@ input[type="text"] {
 }
 
 button {
-  background-color: #000000;
-  color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  background-color: transparent;
+
 }
 
 .list-section {
-  color: #283156;
+  color: white;
 }
 
 button:hover {
@@ -69,7 +69,7 @@ button:hover {
 
 .ingredients-container {
   position: absolute;
-  right: 500px; /* adjust ingredients table */
+  right: 600px; /* adjust ingredients table */
   top: 300px; /* adjust ingredients table */
 }
 
@@ -101,9 +101,9 @@ li {
   text-align: right;
 }
 
-.buttons-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
+.transparent-button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: black;
 }

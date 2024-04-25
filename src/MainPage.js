@@ -66,69 +66,70 @@ const deleteIngredientItem = (index) => {
 };
 
 //Function for updating unit user inputs in ingredients list 
-const updateUnit = (index, unit) => {
-  ingredients[index].unit = unit;
-    setIngredients([...ingredients]);
+const updateIngredientsUnit = (index, unit) => {
+  setIngredients(prevIngredients => {
+    // Create a new array with the updated unit for the specified ingredient
+    const updatedIngredients = prevIngredients.map((ingredient, i) => {
+      if (i === index) {
+        return { ...ingredient, unit: unit };
+      }
+      return ingredient;
+    });
+    return updatedIngredients;
+  });
 };
 
   return (
     //opened fridge picture
-  <div className="mainpage-container" style={{ backgroundImage: 'url(/images/steelfridge.JPG)' }}>
+    <div className="mainpage-container" style={{ backgroundImage: 'url(/images/steelfridge.JPG)' }}>
     <div style={{ position: 'relative', textAlign: 'right', marginTop: '50px', marginRight: '240px', marginLeft: '20px' }}>
-      <h1 className = "heading" style={{ marginBottom: '20px', textAlign: 'right' }}> WHATS IN YOUR FRIDGE?</h1>
+      <h1 className="ingredients-heading" style={{ marginBottom: '20px', textAlign: 'right' }}> WHATS IN YOUR FRIDGE?</h1>
     </div>
-
-    <div style={{ position: 'relative', textAlign: 'right', marginTop: '50px', marginRight: '240px', marginLeft: '20px'  }}>
-      <input
-        type="text"
-        placeholder="Add an ingredient"
-        value={inputValue}
-        onChange={e => setInputValue(e.target.value)}
-        onKeyPress={handleKeyPress}
-      />
-      <input
-        type="number"
-        placeholder="Quantity"
-        value={quantity}
-        onChange={e => setQuantity(Number(e.target.value))}
-        min="1"
-      />
-      <select name="unit" defaultValue="">
-              <option value="" disabled>Unit</option>
-              <option value="N/A">N/A</option>
-              <option value="cup">Cup(s)</option>
-              <option value="ounce">Ounce(s)</option>
-              <option value="tablespoon">Tablespoon(s)</option>
-              <option value="teaspoon">Teaspoon(s)</option>
-              <option value="gram">Gram(s)</option>
-              <option value="quart">Quart(s)</option>
-              <option value="pint">Pint(s)</option>
-              <option value="liter">Liter(s)</option>
-              <option value="milliliter">Milliliter(s)</option>
-              <option value="gallon">Gallon(s)</option>
-            </select>
-      <button onClick={addIngredient}>Add</button>
-    </div>
+    <form onSubmit={addIngredient} className="ingredient-form">
+      <div style={{ position: 'relative', textAlign: 'right', marginTop: '50px', marginRight: '240px', marginLeft: '20px' }}>
+        <input
+          type="text"
+          placeholder="Add an ingredient"
+          value={inputValue}
+          onChange={e => setInputValue(e.target.value)}
+          onKeyPress={handleKeyPress}
+        />
+        <input
+          type="number"
+          placeholder="Quantity"
+          value={quantity}
+          onChange={e => setQuantity(Number(e.target.value))}
+          min="1"
+        />
+        <select name="unit" defaultValue="">
+          <option value="" disabled>Unit</option>
+          <option value="N/A">N/A</option>
+          <option value="cup">Cup(s)</option>
+          <option value="ounce">Ounce(s)</option>
+          <option value="tablespoon">Tablespoon(s)</option>
+          <option value="teaspoon">Teaspoon(s)</option>
+          <option value="gram">Gram(s)</option>
+          <option value="quart">Quart(s)</option>
+          <option value="pint">Pint(s)</option>
+          <option value="liter">Liter(s)</option>
+          <option value="milliliter">Milliliter(s)</option>
+          <option value="gallon">Gallon(s)</option>
+        </select>
+        <button type="submit">Add</button>
+      </div>
+    </form>
     <div>
-      <div style = {{ position: 'relative', textAlign: 'right', marginTop: '50px', marginRight: '340px', marginLeft: '20px'  }}>
-      <h2 className = "list-section"> Ingredients List</h2>
-      </div> {/*
-    <div classname = "ingredients-container"> 
-      <ul>
-        {ingredients.map((ingredient, index) => (
-          <li key={index}>{ingredient.name} - Quantity: {ingredient.quantity}
-          <button onClick={() => deleteIngredientItem(index)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-    </div> */}
-    <div className="ingredients-container">
-    <table className="ingredients-table">
+      <div style={{ position: 'relative', textAlign: 'right', marginTop: '50px', marginRight: '340px', marginLeft: '20px' }}>
+        <h2 className="list-section"> Ingredients List</h2>
+      </div>
+      <div className="ingredients-container">
+        <table className="ingredients-table">
           <thead>
             <tr>
               <th>Ingredient</th>
               <th>Quantity</th>
-              <th></th>  {/* For the delete button */}
+              <th>Unit</th>
+              <th></th> {/* For the delete button */}
             </tr>
           </thead>
           <tbody>
@@ -138,8 +139,8 @@ const updateUnit = (index, unit) => {
                   <td>{ingredient.name}</td>
                   <td>{ingredient.quantity}</td>
                   <td>
-                    <select value={ingredient.unit} onChange={(e) => updateUnit(index, e.target.value)}>
-                    <option value="N/A">N/A</option>
+                    <select value={ingredient.unit} onChange={(e) => updateIngredientsUnit(index, e.target.value)}>
+                      <option value="N/A">N/A</option>
                       <option value="cup">Cup(s)</option>
                       <option value="ounce">Ounce(s)</option>
                       <option value="tablespoon">Tablespoon(s)</option>
@@ -157,30 +158,30 @@ const updateUnit = (index, unit) => {
                   </td>
                 </tr>
               ))
-            ): null }
+            ) : null}
           </tbody>
         </table>
+      </div>
+    </div>
+    <div style={{ marginTop: '20px', marginRight: '160px', textAlign: 'center' }}>
+      <div className="transparent-button" style={{ marginBottom: '20px', width: '170px', marginLeft: '415px' }}>
+        <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <button onClick={goToHomepage} className="transparent-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '10px' }}>Go to Homepage</button>
         </div>
+      </div>
+      <div className="transparent-button" style={{ marginBottom: '20px', width: '170px', marginLeft: '415px' }}>
+        <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <button onClick={goToGroceryList} className="transparent-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '10px' }}>Go to Grocery List</button>
         </div>
-        <div style={{ marginTop: '20px', marginRight: '160px', textAlign: 'center' }}>
-  <div className="buttons-container" style={{ marginBottom: '20px', width: '170px', marginLeft: '415px' }}>
-    <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <button onClick={goToHomepage} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '10px' }}>Go to Homepage</button>
+      </div>
+      <div className="transparent-button" style={{ width: '170px', marginLeft: '415px' }}>
+        <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <button onClick={goToRecipes} className="transparent-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '10px' }}>Go to Recipes</button>
+        </div>
+      </div>
     </div>
   </div>
-  <div className="buttons-container" style={{ marginBottom: '20px', width: '170px', marginLeft: '415px' }}>
-    <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <button onClick={goToGroceryList} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '10px' }}>Go to Grocery List</button>
-    </div>
-  </div>
-  <div className="buttons-container" style={{ width: '170px', marginLeft: '415px' }}>
-    <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <button onClick={goToRecipes} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '10px' }}>Go to Recipes</button>
-    </div>
-  </div>
-</div>
-</div>
-  );
+);
 };
 
 export default MainPage;
