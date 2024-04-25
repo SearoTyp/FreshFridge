@@ -24,19 +24,24 @@ const handleIngredientChange = ingredient => {
   );
 };
 
-const fetchRecipes = async () => {
-  const query = selectedIngredients.map(item => item.name).join(',');
-  const url = `https://api.edamam.com/search?q=${query}&app_id=4bac8aa9&app_key=5de18e0d04cd5dd3685c82bb2aff5bad&diet=${diet}&mealType=${mealType}&health=${healthLabels}&cuisineType=${cuisineType}`;
+ const fetchRecipes = async () => {
+    const query = selectedIngredients.map(item => item.name).join(',');
+    let apiUrl = `https://api.edamam.com/search?q=${query}&app_id=4bac8aa9&app_key=5de18e0d04cd5dd3685c82bb2aff5bad`;
+    
+    if (diet) apiUrl += `&diet=${diet}`;
+    if (mealType) apiUrl += `&mealType=${mealType}`;
+    if (healthLabels) apiUrl += `&health=${healthLabels}`;
+    if (cuisineType) apiUrl += `&cuisineType=${cuisineType}`;
 
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    setRecipes(data.hits || []);
-  } catch (error) {
-    console.error("Failed to fetch recipes", error);
-    setRecipes([]);
-  }
-};
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      setRecipes(data.hits || []);
+    } catch (error) {
+      console.error("Failed to fetch recipes", error);
+      setRecipes([]);
+    }
+  };
 
 const addMissingItemsToGroceryList = (recipe) => {
   const recipeIngredients = recipe.ingredients.map(ing => ({
