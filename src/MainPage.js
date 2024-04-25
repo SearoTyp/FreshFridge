@@ -65,6 +65,12 @@ const deleteIngredientItem = (index) => {
     navigate('/'); // Navigate to the homepage
 };
 
+//Function for updating unit user inputs in ingredients list 
+const updateUnit = (index, unit) => {
+  ingredients[index].unit = unit;
+    setIngredients([...ingredients]);
+};
+
   return (
     //opened fridge picture
   <div className="mainpage-container" style={{ backgroundImage: 'url(/images/steelfridge.JPG)' }}>
@@ -87,6 +93,20 @@ const deleteIngredientItem = (index) => {
         onChange={e => setQuantity(Number(e.target.value))}
         min="1"
       />
+      <select name="unit" defaultValue="">
+              <option value="" disabled>Unit</option>
+              <option value="N/A">N/A</option>
+              <option value="cup">Cup(s)</option>
+              <option value="ounce">Ounce(s)</option>
+              <option value="tablespoon">Tablespoon(s)</option>
+              <option value="teaspoon">Teaspoon(s)</option>
+              <option value="gram">Gram(s)</option>
+              <option value="quart">Quart(s)</option>
+              <option value="pint">Pint(s)</option>
+              <option value="liter">Liter(s)</option>
+              <option value="milliliter">Milliliter(s)</option>
+              <option value="gallon">Gallon(s)</option>
+            </select>
       <button onClick={addIngredient}>Add</button>
     </div>
     <div>
@@ -117,6 +137,21 @@ const deleteIngredientItem = (index) => {
                 <tr key={index}>
                   <td>{ingredient.name}</td>
                   <td>{ingredient.quantity}</td>
+                  <td>
+                    <select value={ingredient.unit} onChange={(e) => updateUnit(index, e.target.value)}>
+                    <option value="N/A">N/A</option>
+                      <option value="cup">Cup(s)</option>
+                      <option value="ounce">Ounce(s)</option>
+                      <option value="tablespoon">Tablespoon(s)</option>
+                      <option value="teaspoon">Teaspoon(s)</option>
+                      <option value="gram">Gram(s)</option>
+                      <option value="quart">Quart(s)</option>
+                      <option value="pint">Pint(s)</option>
+                      <option value="liter">Liter(s)</option>
+                      <option value="milliliter">Milliliter(s)</option>
+                      <option value="gallon">Gallon(s)</option>
+                    </select>
+                  </td>
                   <td>
                     <button onClick={() => deleteIngredientItem(index)} className="delete-button">Delete</button>
                   </td>
