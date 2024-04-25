@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Recipes.css';
@@ -231,7 +232,6 @@ const addMissingItemsToGroceryList = (recipe) => {
                 </div>
                 )}
             <div>
-          <h4>Cooking Instructions:</h4>
         </div>
       </div>
      ))}
