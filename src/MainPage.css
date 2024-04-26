@@ -45,12 +45,9 @@ input[type="text"] {
 }
 
 button {
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
   cursor: pointer;
   background-color: transparent;
-
+  padding: 10px 20px;
 }
 
 .list-section {
@@ -70,7 +67,7 @@ button:hover {
 
 .ingredients-container {
   position: absolute;
-  right: 600px; /* adjust ingredients table */
+  right: 540px; /* adjust ingredients table */
   top: 300px; /* adjust ingredients table */
   text-align: center;
 }
@@ -104,8 +101,10 @@ li {
 }
 
 .transparent-button {
-  border: none;
   cursor: pointer;
   background-color: transparent;
   color: black;
+  box-shadow: 0 0 0 1px black;
+  outline: none;
+  border-radius: 5px;
 }

@@ -92,7 +92,8 @@ const goToGroceryList = () => {
             min="1"
             style={{ marginRight: '10px' }} 
           />
-          <select name="unit" value={unit} onChange={e => setUnit(e.target.value)}>
+          <select name="unit"  defaultValue="" onChange={e => setUnit(e.target.value)}>
+            <option value="" disabled>Unit</option>
             <option value="N/A">N/A</option>
             <option value="cup">Cup(s)</option>
             <option value="ounce">Ounce(s)</option>
@@ -116,7 +117,7 @@ const goToGroceryList = () => {
           <table className="ingredients-table">
             <thead>
               <tr>
-                <th style={{ paddingRight: '30px' }}>Ingredient</th>
+                <th style={{ paddingRight: '20px' }}>Ingredient</th>
                 <th style={{ paddingRight: '20px' }}>Quantity</th>
                 <th style={{ paddingRight: '20px' }}>Unit</th>
                 <th></th> {/* For the delete button */}
@@ -156,17 +157,17 @@ const goToGroceryList = () => {
       <div style={{ marginTop: '20px', marginRight: '160px', textAlign: 'center' }}>
         <div className="transparent-button" style={{ marginBottom: '20px', width: '170px', marginLeft: '415px' }}>
           <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <button onClick={goToHomepage} className="transparent-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '10px' }}>Go to Homepage</button>
+            <button onClick={goToHomepage} className="transparent-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '0px',marginTop: '0px' }}>Go to Homepage</button>
           </div>
         </div>
         <div className="transparent-button" style={{ marginBottom: '20px', width: '170px', marginLeft: '415px' }}>
           <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <button onClick={goToGroceryList} className="transparent-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '10px' }}>Go to Grocery List</button>
+            <button onClick={goToGroceryList} className="transparent-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '0px',marginTop: '0px' }}>Go to Grocery List</button>
           </div>
         </div>
         <div className="transparent-button" style={{ width: '170px', marginLeft: '415px' }}>
           <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <button onClick={goToRecipes} className="transparent-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '10px' }}>Go to Recipes</button>
+            <button onClick={goToRecipes} className="transparent-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '0px',marginTop: '0px' }}>Go to Recipes</button>
           </div>
         </div>
       </div>
