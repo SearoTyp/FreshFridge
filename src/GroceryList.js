@@ -44,6 +44,9 @@ const GroceryList = () => {
     items[index].unit = unit;
     setItems([...items]);
   };
+  const goToHomepage = () => {
+    navigate('/');
+  };
 
   const goToMainPage = () => {
     navigate('/mainpage');
@@ -58,6 +61,7 @@ const GroceryList = () => {
       <div className="navigation-container">
         <button onClick={goToMainPage} className="navigation-button">Go to Ingredients List</button>
         <button onClick={goToRecipes} className="navigation-button">Go to Recipes</button>
+        <button onClick={goToHomepage} className="navigation-button">Go to Homepage</button> 
       </div>
       <div className="form-container">
         <h2>What are we shopping for?</h2>
