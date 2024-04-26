@@ -86,7 +86,7 @@ const updateIngredientsUnit = (index, unit) => {
       <h1 className="ingredients-heading" style={{ marginBottom: '20px', textAlign: 'right' }}> WHATS IN YOUR FRIDGE?</h1>
     </div>
     <form onSubmit={addIngredient} className="ingredient-form">
-      <div style={{ position: 'relative', textAlign: 'right', marginTop: '50px', marginRight: '240px', marginLeft: '20px' }}>
+      <div style={{ position: 'relative', textAlign: 'right', marginTop: '50px', marginRight: '150px', marginLeft: '10px'}}>
         <input
           type="text"
           placeholder="Add an ingredient"
@@ -100,7 +100,8 @@ const updateIngredientsUnit = (index, unit) => {
           value={quantity}
           onChange={e => setQuantity(Number(e.target.value))}
           min="1"
-        />
+          style={{marginRight: '10px' }} 
+          />
         <select name="unit" defaultValue="">
           <option value="" disabled>Unit</option>
           <option value="N/A">N/A</option>
@@ -115,7 +116,8 @@ const updateIngredientsUnit = (index, unit) => {
           <option value="milliliter">Milliliter(s)</option>
           <option value="gallon">Gallon(s)</option>
         </select>
-        <button type="submit">Add</button>
+        <button type="submit" style={{ marginLeft: '10px'}} 
+>Add</button>
       </div>
     </form>
     <div>
@@ -126,9 +128,9 @@ const updateIngredientsUnit = (index, unit) => {
         <table className="ingredients-table">
           <thead>
             <tr>
-              <th>Ingredient</th>
-              <th>Quantity</th>
-              <th>Unit</th>
+              <th style={{ paddingRight: '30px' }}>Ingredient</th>
+              <th style={{ paddingRight: '20px' }}>Quantity</th>
+              <th style={{ paddingRight: '20px' }}>Unit</th>
               <th></th> {/* For the delete button */}
             </tr>
           </thead>

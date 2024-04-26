@@ -65,12 +65,14 @@ button:hover {
   position: absolute;
   margin-right: 1000px; 
   margin-left: auto;
+  text-align: center;
 }
 
 .ingredients-container {
   position: absolute;
   right: 600px; /* adjust ingredients table */
   top: 300px; /* adjust ingredients table */
+  text-align: center;
 }
 
 ul {
