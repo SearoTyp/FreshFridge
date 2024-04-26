@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './GroceryList.css';
 
 const GroceryList = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const ingredientsList = location.state?.ingredientsList || [];  // Retrieve the ingredients list passed via router state
 
   const [items, setItems] = useState(() => {
     const savedItems = sessionStorage.getItem('groceryItems');
@@ -17,16 +19,26 @@ const GroceryList = () => {
   const addGroceryItem = (event) => {
     event.preventDefault();
     const name = event.target.elements.name.value.trim();
-    const quantity = event.target.elements.quantity.value.trim();
+    const quantity = parseInt(event.target.elements.quantity.value.trim(), 10);  // Ensure quantity is a number
     var unit = event.target.elements.unit.value;
     if (!unit) {
       unit = 'N/A';
     }
-    if (name && quantity) {
-      const existingIndex = items.findIndex(item => item.name.toLowerCase() === name.toLowerCase());
-      if (existingIndex !== -1) {
+
+    if (name && !isNaN(quantity)) {
+      const ingredientExistsInGroceryList = items.some(item => item.name.toLowerCase() === name.toLowerCase());
+      const ingredientExistsInIngredientsList = ingredientsList.some(ing => ing.name.toLowerCase() === name.toLowerCase());
+
+      if (ingredientExistsInIngredientsList) {
+        if (!window.confirm(`${name} is already in your ingredients list. Do you still want to add it to the grocery list?`)) {
+          return;  // Stop the function if user does not confirm
+        }
+      }
+
+      if (ingredientExistsInGroceryList) {
+        const existingIndex = items.findIndex(item => item.name.toLowerCase() === name.toLowerCase());
         if (window.confirm(`${name} is already in the grocery list with quantity ${items[existingIndex].quantity}. Do you want to add more?`)) {
-          items[existingIndex].quantity += quantity;
+          items[existingIndex].quantity += quantity;  // Add numerically
           setItems([...items]);
         }
       } else {
@@ -44,9 +56,6 @@ const GroceryList = () => {
     items[index].unit = unit;
     setItems([...items]);
   };
-  const goToHomepage = () => {
-    navigate('/');
-  };
 
   const goToMainPage = () => {
     navigate('/mainpage');
@@ -61,7 +70,6 @@ const GroceryList = () => {
       <div className="navigation-container">
         <button onClick={goToMainPage} className="navigation-button">Go to Ingredients List</button>
         <button onClick={goToRecipes} className="navigation-button">Go to Recipes</button>
-        <button onClick={goToHomepage} className="navigation-button">Go to Homepage</button> 
       </div>
       <div className="form-container">
         <h2>What are we shopping for?</h2>
