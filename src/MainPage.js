@@ -71,12 +71,23 @@ const goToGroceryList = () => {
   };
 
   return (
-    <div className="mainpage-container" style={{ backgroundImage: 'url(/images/steelfridge.JPG)' }}>
-      <div style={{ position: 'relative', textAlign: 'right', marginTop: '50px', marginRight: '240px', marginLeft: '20px' }}>
-        <h1 className="ingredients-heading" style={{ marginBottom: '20px', textAlign: 'right' }}> WHATS IN YOUR FRIDGE?</h1>
+  <div className="mainpage-container" style={{ backgroundImage: 'url(/images/steelfridge.JPG)' }}>
+    <div style={{ display: 'flex', justifyContent: 'left', marginTop: '30px' , marginLeft: '20px'}}>
+  <div className="transparent-button" style={{ marginRight: '10px' }}>
+    <button onClick={goToHomepage} style={{ width: '170px', height: '40px', fontSize: '16px', marginBottom: '0px',marginTop: '0px' }}>Go to Homepage</button>
+  </div>
+  <div className="transparent-button" style={{ marginRight: '10px' }}>
+    <button onClick={goToGroceryList} style={{ width: '170px', height: '40px', fontSize: '16px', marginBottom: '0px',marginTop: '0px' }}>Go to Grocery List</button>
+  </div>
+  <div className="transparent-button">
+    <button onClick={goToRecipes} style={{ width: '170px', height: '40px', fontSize: '16px', marginBottom: '0px',marginTop: '0px' }}>Go to Recipes</button>
+  </div>
+</div>
+      <div style={{ position: 'relative', textAlign: 'right', marginTop: '0px', marginRight: '210px', marginLeft: '20px' }}>
+        <h1 className="ingredients-heading" style={{ textAlign: 'right' }}> WHATS IN YOUR FRIDGE?</h1>
       </div>
       <form onSubmit={addIngredient} className="ingredient-form">
-        <div style={{ position: 'relative', textAlign: 'right', marginTop: '50px', marginRight: '150px', marginLeft: '10px'}}>
+        <div style={{ position: 'relative', textAlign: 'right', marginRight: '150px', marginLeft: '10px'}}>
           <input
             type="text"
             placeholder="Add an ingredient"
@@ -110,10 +121,8 @@ const goToGroceryList = () => {
         </div>
       </form>
       <div>
-        <div style={{ position: 'relative', textAlign: 'right', marginTop: '50px', marginRight: '340px', marginLeft: '20px' }}>
-          <h2 className="list-section"> Ingredients List</h2>
-        </div>
         <div className="ingredients-container">
+        <h2 className="list-section" style={{ position: 'relative', textAlign: 'center', marginTop: '0px'}}> Ingredients List</h2>
           <table className="ingredients-table">
             <thead>
               <tr>
@@ -149,29 +158,17 @@ const goToGroceryList = () => {
                     </td>
                   </tr>
                 ))
-              ) : null}
+                ) : (
+                  <tr>
+                    <td colSpan="4" style={{ textAlign: 'center' }}>Your ingredients list is empty</td>
+                  </tr>
+                )}
             </tbody>
           </table>
         </div>
       </div>
-      <div style={{ marginTop: '20px', marginRight: '160px', textAlign: 'center' }}>
-        <div className="transparent-button" style={{ marginBottom: '20px', width: '170px', marginLeft: '415px' }}>
-          <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <button onClick={goToHomepage} className="transparent-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '0px',marginTop: '0px' }}>Go to Homepage</button>
-          </div>
-        </div>
-        <div className="transparent-button" style={{ marginBottom: '20px', width: '170px', marginLeft: '415px' }}>
-          <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <button onClick={goToGroceryList} className="transparent-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '0px',marginTop: '0px' }}>Go to Grocery List</button>
-          </div>
-        </div>
-        <div className="transparent-button" style={{ width: '170px', marginLeft: '415px' }}>
-          <div style={{ maxWidth: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <button onClick={goToRecipes} className="transparent-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginBottom: '0px',marginTop: '0px' }}>Go to Recipes</button>
-          </div>
-        </div>
-      </div>
-    </div>
+      
+</div>
   );
 }
 

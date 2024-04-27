@@ -10,7 +10,7 @@
 
 .ingredients-heading {
   color: white;
-  text-align: right;
+  text-align: center;
   margin-top: 20px;
 } 
 
@@ -59,17 +59,39 @@ button:hover {
 }
 
 .ingredients-table{
-  position: absolute;
-  margin-right: 1000px; 
-  margin-left: auto;
-  text-align: center;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .ingredients-container {
   position: absolute;
-  right: 540px; /* adjust ingredients table */
-  top: 300px; /* adjust ingredients table */
-  text-align: center;
+  right: 175px; /* adjust ingredients table */
+  top: 220px; /* adjust ingredients table */
+  text-align: right;
+  width: 30%; /* Adjusted width to prevent horizontal scrolling */
+  background-color: transparent;  /* Same as form-container for consistency */
+  border: 1px solid #000000;
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-height: 500px; /* Adjust based on your preference */
+  overflow-y: auto;  /* Enables vertical scrolling */
+  overflow-x: hidden; /* Hides horizontal scroll */
+}
+
+.ingredients-table th,
+.ingredients-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;  /* Centering the table headers and content */
+}
+
+.ingredients-table input[type="number"] {
+  width: 60px;  /* Smaller inputs for better fitting */
+  border: none;  /* Remove borders */
+  background-color: transparent; /* Make background transparent */
+  text-align: center; /* Center text inside input */
 }
 
 ul {
@@ -102,8 +124,8 @@ li {
 
 .transparent-button {
   cursor: pointer;
-  background-color: transparent;
-  color: black;
+  background-color: #048b28;
+  color: white;
   box-shadow: 0 0 0 1px black;
   outline: none;
   border-radius: 5px;
