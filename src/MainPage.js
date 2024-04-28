@@ -71,41 +71,40 @@ const goToGroceryList = () => {
   };
 
   return (
-  <div className="mainpage-container" style={{ backgroundImage: 'url(/images/steelfridge.JPG)' }}>
-    <div style={{ display: 'flex', justifyContent: 'left', marginTop: '30px' , marginLeft: '20px'}}>
-  <div className="transparent-button" style={{ marginRight: '10px' }}>
-    <button onClick={goToHomepage} style={{ width: '170px', height: '40px', fontSize: '16px', marginBottom: '0px',marginTop: '0px' }}>Go to Homepage</button>
-  </div>
-  <div className="transparent-button" style={{ marginRight: '10px' }}>
-    <button onClick={goToGroceryList} style={{ width: '170px', height: '40px', fontSize: '16px', marginBottom: '0px',marginTop: '0px' }}>Go to Grocery List</button>
-  </div>
-  <div className="transparent-button">
-    <button onClick={goToRecipes} style={{ width: '170px', height: '40px', fontSize: '16px', marginBottom: '0px',marginTop: '0px' }}>Go to Recipes</button>
-  </div>
-</div>
+    <div className="mainpage-container" style={{ backgroundImage: 'url(/images/steelfridge.JPG)' }}>
+      <div style={{ display: 'flex', justifyContent: 'left', marginTop: '30px', marginLeft: '20px' }}>
+        <div className="transparent-button" style={{ marginRight: '10px' }}>
+          <button onClick={goToHomepage} style={{ width: '170px', height: '40px', fontSize: '16px', marginBottom: '0px', marginTop: '0px' }}>Go to Homepage</button>
+        </div>
+        <div className="transparent-button" style={{ marginRight: '10px' }}>
+          <button onClick={goToGroceryList} style={{ width: '170px', height: '40px', fontSize: '16px', marginBottom: '0px', marginTop: '0px' }}>Go to Grocery List</button>
+        </div>
+        <div className="transparent-button">
+          <button onClick={goToRecipes} style={{ width: '170px', height: '40px', fontSize: '16px', marginBottom: '0px', marginTop: '0px' }}>Go to Recipes</button>
+        </div>
+      </div>
       <div style={{ position: 'relative', textAlign: 'right', marginTop: '0px', marginRight: '210px', marginLeft: '20px' }}>
         <h1 className="ingredients-heading" style={{ textAlign: 'right' }}> WHAT'S IN YOUR FRIDGE?</h1>
       </div>
       <form onSubmit={addIngredient} className="ingredient-form">
-        <div style={{ position: 'relative', textAlign: 'right', marginRight: '150px', marginLeft: '10px'}}>
+        <div style={{ position: 'relative', textAlign: 'right', marginRight: '150px', marginLeft: '10px' }}>
           <input
-            pattern="[A-Za-z ]+"
+            pattern="[A-Za-z\s]+"
             title="Please enter only letters and spaces"
             type="text"
             placeholder="Add an ingredient"
             value={inputValue}
-            onChange={e => setInputValue(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onChange={(e) => setInputValue(e.target.value)}
             required />
           <input
             type="number"
             placeholder="Quantity"
-            value={quantity}
-            onChange={e => setQuantity(Number(e.target.value))}
+            value={quantity === 0 ? '' : quantity} // Check if quantity is 0, if so, set the value to empty string
+            onChange={(e) => setQuantity(e.target.value === '' ? 0 : parseInt(e.target.value, 10))} // Parse the value as integer if not empty
             min="1"
-            style={{ marginRight: '10px' }} 
+            style={{ marginRight: '10px', height: '40px' }} // Set the height to match the ingredient table
           />
-          <select name="unit"  defaultValue="" onChange={e => setUnit(e.target.value)}>
+          <select name="unit" defaultValue="" onChange={(e) => setUnit(e.target.value)}>
             <option value="" disabled>Unit</option>
             <option value="N/A">N/A</option>
             <option value="cup">Cup(s)</option>
@@ -124,7 +123,7 @@ const goToGroceryList = () => {
       </form>
       <div>
         <div className="ingredients-container">
-        <h2 className="list-section" style={{ position: 'relative', textAlign: 'center', marginTop: '0px'}}> Ingredients List</h2>
+          <h2 className="list-section" style={{ position: 'relative', textAlign: 'center', marginTop: '0px' }}> Ingredients List</h2>
           <table className="ingredients-table">
             <thead>
               <tr>
@@ -160,18 +159,17 @@ const goToGroceryList = () => {
                     </td>
                   </tr>
                 ))
-                ) : (
-                  <tr>
-                    <td colSpan="4" style={{ textAlign: 'center' }}>Your ingredients list is empty</td>
-                  </tr>
-                )}
+              ) : (
+                <tr>
+                  <td colSpan="4" style={{ textAlign: 'center' }}>Your ingredients list is empty</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
       </div>
-      
-</div>
-  );
+    </div>
+  );  
 }
 
   export default MainPage;
