@@ -84,17 +84,19 @@ const goToGroceryList = () => {
   </div>
 </div>
       <div style={{ position: 'relative', textAlign: 'right', marginTop: '0px', marginRight: '210px', marginLeft: '20px' }}>
-        <h1 className="ingredients-heading" style={{ textAlign: 'right' }}> WHATS IN YOUR FRIDGE?</h1>
+        <h1 className="ingredients-heading" style={{ textAlign: 'right' }}> WHAT'S IN YOUR FRIDGE?</h1>
       </div>
       <form onSubmit={addIngredient} className="ingredient-form">
         <div style={{ position: 'relative', textAlign: 'right', marginRight: '150px', marginLeft: '10px'}}>
           <input
+            pattern="[A-Za-z ]+"
+            title="Please enter only letters and spaces"
             type="text"
             placeholder="Add an ingredient"
             value={inputValue}
             onChange={e => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
-          />
+            required />
           <input
             type="number"
             placeholder="Quantity"

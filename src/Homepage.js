@@ -91,7 +91,7 @@ const deleteIngredientItem = (index) => {
     </div>
     <div style={{ flex: 1, textAlign: 'center' }}>
       <a href="/recipes" onClick={goToRecipes}>
-        <img src="/images/cookbook.JPG" alt="cookbook" style={{ width: '100%', height: '300px', objectFit: 'cover' }} />
+        <img src="/images/newcookbook.JPG" alt="cookbook" style={{ width: '100%', height: '300px', objectFit: 'cover' }} />
       </a>
       <button onClick={goToRecipes} className="image-button" style={{ width: '100%', height: '40px', fontSize: '16px', marginTop: '10px' }}>Go to Recipes</button>
     </div>
