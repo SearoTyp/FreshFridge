@@ -93,6 +93,7 @@ const goToGroceryList = () => {
             title="Please enter only letters and spaces"
             type="text"
             placeholder="Add an ingredient"
+            style={{ marginRight: '10px', height: '19px', borderRadius: '5px'}} // Set the height to match the ingredient table
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             required />
@@ -102,7 +103,7 @@ const goToGroceryList = () => {
             value={quantity === 0 ? '' : quantity} // Check if quantity is 0, if so, set the value to empty string
             onChange={(e) => setQuantity(e.target.value === '' ? 0 : parseInt(e.target.value, 10))} // Parse the value as integer if not empty
             min="1"
-            style={{ marginRight: '10px', height: '40px' }} // Set the height to match the ingredient table
+            style={{ marginRight: '10px', height: '35px', borderRadius: '5px'}} // Set the height to match the ingredient table
           />
           <select name="unit" defaultValue="" onChange={(e) => setUnit(e.target.value)}>
             <option value="" disabled>Unit</option>
