@@ -5,41 +5,59 @@ import './GroceryList.css';
 const GroceryList = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const ingredientsList = location.state?.ingredientsList || [];  // Retrieve the ingredients list passed via router state
 
+  // Initially load ingredients list from session storage or location state
+  const [ingredientsList, setIngredientsList] = useState(() => {
+    const initialIngredients = sessionStorage.getItem('ingredients') ? JSON.parse(sessionStorage.getItem('ingredients')) : [];
+    return location.state?.ingredientsList || initialIngredients;
+  });
+
+  // State to manage grocery items
   const [items, setItems] = useState(() => {
     const savedItems = sessionStorage.getItem('groceryItems');
     return savedItems ? JSON.parse(savedItems) : [];
   });
 
+  // Effect to update grocery items in session storage
   useEffect(() => {
     sessionStorage.setItem('groceryItems', JSON.stringify(items));
   }, [items]);
 
+  // Listen to storage changes
+  useEffect(() => {
+    const handleStorageChange = (event) => {
+      if (event.key === 'ingredients') {
+        setIngredientsList(JSON.parse(event.newValue));
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
   const addGroceryItem = (event) => {
     event.preventDefault();
     const name = event.target.elements.name.value.trim();
-    const quantity = parseInt(event.target.elements.quantity.value.trim(), 10);  // Ensure quantity is a number
-    var unit = event.target.elements.unit.value;
-    if (!unit) {
-      unit = 'N/A';
-    }
+    const quantity = parseInt(event.target.elements.quantity.value.trim(), 10);
+    const unit = event.target.elements.unit.value || 'N/A';
 
     if (name && !isNaN(quantity)) {
       const ingredientExistsInGroceryList = items.some(item => item.name.toLowerCase() === name.toLowerCase());
       const ingredientExistsInIngredientsList = ingredientsList.some(ing => ing.name.toLowerCase() === name.toLowerCase());
 
-      if (ingredientExistsInIngredientsList) {
-        if (!window.confirm(`${name} is already in your ingredients list. Do you still want to add it to the grocery list?`)) {
-          return;  // Stop the function if user does not confirm
-        }
+      if (ingredientExistsInIngredientsList && !window.confirm(`${name} is already in your ingredients list. Do you still want to add it to the grocery list?`)) {
+        return;  // Stop the function if user does not confirm
       }
 
       if (ingredientExistsInGroceryList) {
         const existingIndex = items.findIndex(item => item.name.toLowerCase() === name.toLowerCase());
         if (window.confirm(`${name} is already in the grocery list with quantity ${items[existingIndex].quantity}. Do you want to add more?`)) {
-          items[existingIndex].quantity += quantity;  // Add numerically
-          setItems([...items]);
+          const updatedItems = [...items];
+          updatedItems[existingIndex] = {...updatedItems[existingIndex], quantity: updatedItems[existingIndex].quantity + quantity};
+          setItems(updatedItems);
         }
       } else {
         setItems([...items, { name, quantity, unit }]);
