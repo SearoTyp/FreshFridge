@@ -1,10 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './GroceryList.css';
+import emailjs from 'emailjs-com';
 
 const GroceryList = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    // Format the grocery items into a string or HTML to be sent
+    const groceryListContent = items.map(item => `${item.quantity} ${item.unit} of ${item.name}`).join(', ');
+
+    const templateParams = {
+      groceryList: groceryListContent,
+      // Add any other template parameters you need
+    };
+
+    emailjs.init({
+      publicKey: 'QARg6vkLm5QD7DtQi'
+    });
+
+    emailjs.send('service_nkhfjs7', 'template_kln7dxr', templateParams)
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        alert('Grocery list sent to your email!');
+      }, (error) => {
+        console.log('FAILED...', error);
+        alert('Failed to send grocery list.');
+      });
+  };
 
   // Initially load ingredients list from session storage or location state
   const [ingredientsList, setIngredientsList] = useState(() => {
@@ -116,6 +142,7 @@ const GroceryList = () => {
             </select>
           </div>
           <button type="submit">Add Ingredient</button>
+          <button onClick={sendEmail}>Send Grocery List</button>
         </form>
       </div>
       <div className="table-container">
