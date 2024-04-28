@@ -57,6 +57,10 @@ const GroceryList = () => {
     setItems([...items]);
   };
 
+  const goToHomepage = () => {
+    navigate('/');
+  };
+
   const goToMainPage = () => {
     navigate('/mainpage');
   };
@@ -68,6 +72,7 @@ const GroceryList = () => {
   return (
     <div className="grocery-list-container" style={{ backgroundImage: 'url(/images/fooditems.JPG)' }}>
       <div className="navigation-container">
+        <button onClick={goToHomepage} className="navigation-button">Go to Homepage</button>
         <button onClick={goToMainPage} className="navigation-button">Go to Ingredients List</button>
         <button onClick={goToRecipes} className="navigation-button">Go to Recipes</button>
       </div>

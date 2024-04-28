@@ -38,6 +38,11 @@
   transform: translateY(-50%);
 }
 
+.form-container h2 {
+  color: black; /* Setting the color of the heading to black */
+}
+
+
 .grocery-form {
   display: flex;
   flex-direction: column;
