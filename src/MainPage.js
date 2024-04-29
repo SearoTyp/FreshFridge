@@ -86,17 +86,20 @@ const goToGroceryList = () => {
       <div style={{ position: 'relative', textAlign: 'right', marginTop: '0px', marginRight: '210px', marginLeft: '20px' }}>
         <h1 className="ingredients-heading" style={{ textAlign: 'right' }}> WHAT'S IN YOUR FRIDGE?</h1>
       </div>
+      <div className="ingredients-form-container">
       <form onSubmit={addIngredient} className="ingredient-form">
-        <div style={{ position: 'relative', textAlign: 'right', marginRight: '150px', marginLeft: '10px' }}>
+        <div style={{ position: 'relative', textAlign: 'right', marginRight: '270px', marginLeft: '20px'}}>
           <input
             pattern="[A-Za-z\s]+"
             title="Please enter only letters and spaces"
             type="text"
             placeholder="Add an ingredient"
-            style={{ marginRight: '10px', height: '19px', borderRadius: '5px'}} // Set the height to match the ingredient table
+            style={{ width: '260px', marginRight: '10px', height: '19px', borderRadius: '5px'}} 
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             required />
+          </div>
+          <div style={{ position: 'relative', textAlign: 'right', marginRight: '280px', marginLeft: '10px' }}>
           <input
             type="number"
             placeholder="Quantity"
@@ -119,9 +122,12 @@ const goToGroceryList = () => {
             <option value="milliliter">Milliliter(s)</option>
             <option value="gallon">Gallon(s)</option>
           </select>
-          <button type="submit" style={{ marginLeft: '10px' }}>Add</button>
-        </div>
+          </div>
+          <div style={{ position: 'relative', textAlign: 'right', marginRight: '279px', marginLeft: '10px' }}>
+          <button type="submit" style={{ marginLeft: '10px', width:'282px' }}>Add</button>
+          </div>
       </form>
+      </div>
       <div>
         <div className="ingredients-container">
           <h2 className="list-section" style={{ position: 'relative', textAlign: 'center', marginTop: '0px' }}> Ingredients List</h2>
