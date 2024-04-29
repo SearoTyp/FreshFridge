@@ -5,6 +5,7 @@ import './Recipes.css';
 
 const Recipes = () => {
   const navigate = useNavigate();
+  const [showFilters, setShowFilters] = useState(false);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [allIngredients, setAllIngredients] = useState([]);
   const [recipes, setRecipes] = useState([]);
@@ -13,35 +14,52 @@ const Recipes = () => {
   const [mealType, setMealType] = useState('');
   const [healthLabels, setHealthLabels] = useState('');
   const [cuisineType, setCuisineType] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
 useEffect(() => {
   const storedIngredients = JSON.parse(sessionStorage.getItem('ingredients') || '[]');
   setAllIngredients(storedIngredients);
 }, []);
-
-const handleIngredientChange = ingredient => {
-  setSelectedIngredients(prev => 
-    prev.includes(ingredient) ? prev.filter(i => i !== ingredient) : [...prev, ingredient]
-  );
+const handleSearchChange = (e) => {
+  setSearchQuery(e.target.value);
 };
 
- const fetchRecipes = async () => {
-    const query = selectedIngredients.map(item => item.name).join(',');
-    let apiUrl = `https://api.edamam.com/search?q=${query}&app_id=4bac8aa9&app_key=5de18e0d04cd5dd3685c82bb2aff5bad`;
-    
-    if (diet) apiUrl += `&diet=${diet}`;
-    if (mealType) apiUrl += `&mealType=${mealType}`;
-    if (healthLabels) apiUrl += `&health=${healthLabels}`;
-    if (cuisineType) apiUrl += `&cuisineType=${cuisineType}`;
+const handleSearchSubmit = (e) => {
+  if (e.key === 'Enter') {
+    fetchRecipes();
+  }
+};
 
-    try {
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-      setRecipes(data.hits || []);
-    } catch (error) {
-      console.error("Failed to fetch recipes", error);
-      setRecipes([]);
-    }
+
+const handleIngredientChange = ingredient => {
+  setSelectedIngredients(prev => {
+    const newIngredients = prev.includes(ingredient) ? prev.filter(i => i !== ingredient) : [...prev, ingredient];
+    fetchRecipes(); // This will re-fetch recipes based on the new selected ingredients list
+    return newIngredients;
+  });
+};
+
+const fetchRecipes = async () => {
+  const ingredientQuery = selectedIngredients.map(ing => ing.name).join(', ');
+  let apiUrl = `https://api.edamam.com/search?q=${ingredientQuery || searchQuery}&app_id=4bac8aa9&app_key=5de18e0d04cd5dd3685c82bb2aff5bad`;
+  
+  if (diet) apiUrl += `&diet=${diet}`;
+  if (mealType) apiUrl += `&mealType=${mealType}`;
+  if (healthLabels) apiUrl += `&health=${healthLabels}`;
+  if (cuisineType) apiUrl += `&cuisineType=${cuisineType}`;
+
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    setRecipes(data.hits || []);
+  } catch (error) {
+    console.error("Failed to fetch recipes", error);
+    setRecipes([]);
+  }
+};
+
+  const goToHomepage = () => {
+    navigate('/');
   };
 
 const addMissingItemsToGroceryList = (recipe) => {
@@ -94,7 +112,12 @@ const addMissingItemsToGroceryList = (recipe) => {
 
   return (
     <div className="recipes-container" style={{ backgroundImage: 'url(/images/CB.jpeg)' }}> 
-      <h1>Recipes</h1>
+      <div className="navigation-buttons">
+        <button onClick={() => navigate('/MainPage')}>Go to Ingredients List</button>
+        <button onClick={() => navigate('/grocery-list')}>Go to Grocery List</button>
+        <button onClick={goToHomepage} className="navigation-button">Go to Homepage</button>
+      </div>
+      <h1 className="recipe-title">Recipes</h1>
       <h2>Choose Ingredients</h2>
       {allIngredients.map((ingredient, index) => (
         <label key={index}>
@@ -106,61 +129,67 @@ const addMissingItemsToGroceryList = (recipe) => {
           {ingredient.name}
         </label>
       ))}
-      <div>
-        <select value={diet} onChange={(e) => setDiet(e.target.value)}>
-          <option value="">Select Diet</option>
-          <option value="balanced">Balanced</option>
-          <option value="high-protein">High-Protein</option>
-          <option value="low-fat">Low-Fat</option>
-          <option value="low-carb">Low-Carb</option>
-        </select>
-        <select value={mealType} onChange={(e) => setMealType(e.target.value)}>
-          <option value="">Select Meal Type</option>
-          <option value="breakfast">Breakfast</option>
-          <option value="lunch">Lunch</option>
-          <option value="dinner">Dinner</option>
-          <option value="snack">Snack</option>
-        </select>
-        <select value={healthLabels} onChange={(e) => setHealthLabels(e.target.value)}>
-          <option value="">Select Health Labels</option>
-          <option value="alcohol-cocktail">Alcohol-Cocktail</option>
-          <option value="alcohol-free">Alcohol-Free</option>
-          <option value="celery-free">Celery-Free</option>
-          <option value="crustacean-free">Crustacean-Free</option>
-          <option value="dairy-free">Dairy-Free</option>
-          <option value="DASH">DASH</option>
-          <option value="egg-free">Egg-Free</option>
-          <option value="fish-free">Fish-Free</option>
-          <option value="fodmap-free">FODMAP-Free</option>
-          <option value="gluten-free">Gluten-Free</option>
-          <option value="immuno-supportive">Immuno-Supportive</option>
-          <option value="keto-friendly">Keto-Friendly</option>
-          <option value="kidney-friendly">Kidney-Friendly</option>
-          <option value="kosher">Kosher</option>
-          <option value="low-fat-abs">Low-Fat-Abs</option>
-          <option value="low-potassium">Low-Potassium</option>
-          <option value="low-sugar">Low-Sugar</option>
-          <option value="lupine-free">Lupine-Free</option>
-          <option value="Mediterranean">Mediterranean</option>
-          <option value="mollusk-free">Mollusk-Free</option>
-          <option value="mustard-free">Mustard-Free</option>
-          <option value="no-oil-added">No-Oil-Added</option>
-          <option value="paleo">Paleo</option>
-          <option value="peanut-free">Peanut-Free</option>
-          <option value="pescatarian">Pescatarian</option>
-          <option value="pork-free">Pork-Free</option>
-          <option value="red-meat-free">Red-Meat-Free</option>
-          <option value="sesame-free">Sesame-Free</option>
-          <option value="shellfish-free">Shellfish-Free</option>
-          <option value="soy-free">Soy-Free</option>
-          <option value="sugar-conscious">Sugar-Conscious</option>
-          <option value="sulfite-free">Sulfite-Free</option>
-          <option value="tree-nut-free">Tree-Nut-Free</option>
-          <option value="vegan">Vegan</option>
-          <option value="vegetarian">Vegetarian</option>
-          <option value="wheat-free">Wheat-Free</option>
-        </select>
-        <select value={cuisineType} onChange={(e) => setCuisineType(e.target.value)}>
+      <div className="action-buttons">
+      <input type="text" placeholder="Search dishes..." value={searchQuery} onChange={handleSearchChange} onKeyPress={handleSearchSubmit} />
+        <button onClick={() => setShowFilters(!showFilters)}>{showFilters ? 'Hide' : 'Show'} Filter Options</button>
+        <button onClick={fetchRecipes}>Fetch Recipes</button>
+      </div>
+      {showFilters && (
+        <div>
+          <select value={diet} onChange={(e) => setDiet(e.target.value)}>
+            <option value="">Select Diet</option>
+            <option value="balanced">Balanced</option>
+            <option value="high-protein">High-Protein</option>
+            <option value="low-fat">Low-Fat</option>
+            <option value="low-carb">Low-Carb</option>
+          </select>
+          <select value={mealType} onChange={(e) => setMealType(e.target.value)}>
+            <option value="">Select Meal Type</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="snack">Snack</option>
+          </select>
+          <select value={healthLabels} onChange={(e) => setHealthLabels(e.target.value)}>
+            <option value="">Select Health Labels</option>
+            <option value="alcohol-cocktail">Alcohol-Cocktail</option>
+            <option value="alcohol-free">Alcohol-Free</option>
+            <option value="celery-free">Celery-Free</option>
+            <option value="crustacean-free">Crustacean-Free</option>
+            <option value="dairy-free">Dairy-Free</option>
+            <option value="DASH">DASH</option>
+            <option value="egg-free">Egg-Free</option>
+            <option value="fish-free">Fish-Free</option>
+            <option value="fodmap-free">FODMAP-Free</option>
+            <option value="gluten-free">Gluten-Free</option>
+            <option value="immuno-supportive">Immuno-Supportive</option>
+            <option value="keto-friendly">Keto-Friendly</option>
+            <option value="kidney-friendly">Kidney-Friendly</option>
+            <option value="kosher">Kosher</option>
+            <option value="low-fat-abs">Low-Fat-Abs</option>
+            <option value="low-potassium">Low-Potassium</option>
+            <option value="low-sugar">Low-Sugar</option>
+            <option value="lupine-free">Lupine-Free</option>
+            <option value="Mediterranean">Mediterranean</option>
+            <option value="mollusk-free">Mollusk-Free</option>
+            <option value="mustard-free">Mustard-Free</option>
+            <option value="no-oil-added">No-Oil-Added</option>
+            <option value="paleo">Paleo</option>
+            <option value="peanut-free">Peanut-Free</option>
+            <option value="pescatarian">Pescatarian</option>
+            <option value="pork-free">Pork-Free</option>
+            <option value="red-meat-free">Red-Meat-Free</option>
+            <option value="sesame-free">Sesame-Free</option>
+            <option value="shellfish-free">Shellfish-Free</option>
+            <option value="soy-free">Soy-Free</option>
+            <option value="sugar-conscious">Sugar-Conscious</option>
+            <option value="sulfite-free">Sulfite-Free</option>
+            <option value="tree-nut-free">Tree-Nut-Free</option>
+            <option value="vegan">Vegan</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="wheat-free">Wheat-Free</option>
+          </select>
+          <select value={cuisineType} onChange={(e) => setCuisineType(e.target.value)}>
           <option value="">Select Cuisine Type</option>
           <option value="American">American</option>
           <option value="Asian">Asian</option>
@@ -181,22 +210,20 @@ const addMissingItemsToGroceryList = (recipe) => {
           <option value="South American">South American</option>
           <option value="South East Asian">South East Asian</option>
         </select>
-      </div>
-      <button onClick={fetchRecipes}>Fetch Recipes</button>
-      <button onClick={() => navigate('/MainPage')}>Go to Ingredients List</button>
-      <button onClick={() => navigate('/grocery-list')}>Go to Grocery List</button>
+        </div>
+      )}
       <div className="recipe-grid">
-  {recipes.map((recipe, index) => (
-    <div key={index} className="recipe-card">
-      <h3>{recipe.recipe.label}</h3>
-      <img src={recipe.recipe.image} alt={recipe.recipe.label} style={{ maxWidth: '100px', maxHeight: '100px' }} />
-      <ul>
-        {recipe.recipe.ingredients.map(ing => <li key={ing.foodId}>{ing.text}</li>)}
-      </ul>
-      <button onClick={() => addMissingItemsToGroceryList(recipe.recipe)}>Add Missing Items to Grocery List</button>
-      <button onClick={() => handleNutritionClick(recipe.recipe)}>Get Nutrition Info</button>
-      {nutritionData[recipe.recipe.uri] && (
-        <div className="nutrition-details">
+        {recipes.map((recipe, index) => (
+          <div key={index} className="recipe-card">
+            <h3>{recipe.recipe.label}</h3>
+            <img src={recipe.recipe.image} alt={recipe.recipe.label} style={{ maxWidth: '100px', maxHeight: '100px' }} />
+            <ul>
+              {recipe.recipe.ingredients.map(ing => <li key={ing.foodId}>{ing.text}</li>)}
+            </ul>
+            <button onClick={() => addMissingItemsToGroceryList(recipe.recipe)}>Add Missing Items to Grocery List</button>
+            <button onClick={() => handleNutritionClick(recipe.recipe)}>Get Nutrition Info</button>
+            {nutritionData[recipe.recipe.uri] && (
+              <div className="nutrition-details">
                 <h4>Nutrition Details:</h4>
                 <p>Calories: {nutritionData[recipe.recipe.uri].calories}</p>
                 <p>Carbs: {nutritionData[recipe.recipe.uri]?.totalNutrients.CHOCDF.quantity.toFixed(2)} g</p>
@@ -229,14 +256,12 @@ const addMissingItemsToGroceryList = (recipe) => {
                 <p>Zinc: {nutritionData[recipe.recipe.uri]?.totalNutrients.ZN?.quantity.toFixed(2)} mg</p>
                 <p>Water: {nutritionData[recipe.recipe.uri]?.totalNutrients.WATER?.quantity.toFixed(2)} g</p>
                 {/* Additional nutrients can be added here */}
-                </div>
-                )}
-            <div>
-        </div>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
-     ))}
     </div>
-  </div>
   );
 };
 

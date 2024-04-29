@@ -1,3 +1,18 @@
+/* Existing CSS content with modifications for centering the title and positioning buttons */
+.recipe-title {
+    text-align: center; /* Centers the title text */
+    width: 100%; /* Ensures the title element spans the full container width */
+}
+
+.navigation-buttons {
+    display: flex; /* Flex layout to manage the buttons easily */
+    gap: 10px; /* Space between each button */
+    position: absolute; /* Positions the buttons absolutely within a relative container */
+    top: 10px;
+    left: 10px;
+    padding: 0; /* Adjusts padding as needed */
+}
+
 /* General styles for the recipe container */
 .recipes-container {
     background-size: cover; /* Cover the entire area of the container */
@@ -15,7 +30,7 @@ h1, h2 {
 }
 
 /* Styling for form elements */
-select, button {
+select, button, input[type="text"] {
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
@@ -52,7 +67,6 @@ select, button {
     z-index: -1; /* Ensures it stays behind the content */
 }
 
-/* Ensuring images fit well within the cards and are centered */
 .recipe-card img {
     max-width: 100%;
     height: auto;
@@ -60,13 +74,11 @@ select, button {
     margin: 0 auto;  /* Centers the image horizontally */
 }
 
-/* Centering titles within a card */
 .recipe-card h3 {
     color: #ffffff;
     text-align: center;  /* Centers the title text */
 }
 
-/* Styling for ingredient list to appear in two columns */
 .recipe-card ul {
     columns: 2;  /* Creating two columns for the list */
     -webkit-columns: 2;
@@ -81,7 +93,6 @@ select, button {
     break-inside: avoid-column; /* Prevents breaking items across columns */
 }
 
-/* Additional interaction cues */
 button {
     background-color: #4CAF50; /* Green background for buttons */
     color: white;
@@ -91,12 +102,11 @@ button {
     cursor: pointer;
 }
 
-/* Responsive adjustments for smaller screens */
 @media (max-width: 600px) {
     .recipe-card {
         flex: 1 1 100%; /* Full width for mobile devices */
     }
-    
+
     .recipe-card ul {
         columns: 1; /* Single column for ingredients on small screens */
         -webkit-columns: 1;
@@ -104,7 +114,6 @@ button {
     }
 }
 
-/* Optional: Extra visual tweaks for smaller details */
 .nutrition-details h4 {
     margin-top: 10px;
     color: #666;
@@ -115,7 +124,6 @@ button {
     color: #444;
 }
 
-/* Styling for the nutrition details to appear in two columns */
 .nutrition-details {
     column-count: 2;  /* Maintaining two columns for the list */
     -webkit-column-count: 2;
@@ -133,7 +141,6 @@ button {
     break-inside: avoid-column; /* Avoids splitting paragraphs between columns */
 }
 
-/* Updated styling for the header to ensure it is centered */
 .nutrition-details h4 {
     margin-top: 0;
     color: #ffffff;
@@ -143,7 +150,6 @@ button {
     column-span: all;  /* Attempts to span across all columns if supported */
 }
 
-/* Responsive adjustments for smaller screens */
 @media (max-width: 600px) {
     .nutrition-details {
         column-count: 1;  /* One column on small screens */
