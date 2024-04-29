@@ -58,6 +58,7 @@ button:hover {
   background-color: #ffa726;
 }
 
+
 .ingredients-table{
   width: 100%;
   border-collapse: collapse;
@@ -66,7 +67,7 @@ button:hover {
 .ingredients-container {
   position: absolute;
   right: 175px; /* adjust ingredients table */
-  top: 220px; /* adjust ingredients table */
+  top: 325px; /* adjust ingredients table */
   text-align: right;
   width: 30%; /* Adjusted width to prevent horizontal scrolling */
   background-color: transparent;  /* Same as form-container for consistency */
@@ -126,7 +127,6 @@ li {
   cursor: pointer;
   background-color: #69c215;
   color: white;
-  box-shadow: 0 0 0 1px black;
   outline: none;
   border-radius: 5px;
 }
