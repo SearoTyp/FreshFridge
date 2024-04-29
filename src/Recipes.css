@@ -62,7 +62,7 @@ select, button {
 
 /* Centering titles within a card */
 .recipe-card h3 {
-    color: #2a2a2a;
+    color: #ffffff;
     text-align: center;  /* Centers the title text */
 }
 
@@ -136,7 +136,7 @@ button {
 /* Updated styling for the header to ensure it is centered */
 .nutrition-details h4 {
     margin-top: 0;
-    color: #000000;
+    color: #ffffff;
     text-align: center;  /* Centers the text horizontally */
     width: 100%;  /* Ensures the heading spans both columns */
     display: block;  /* Block display to respect text-align */

@@ -93,7 +93,7 @@ const addMissingItemsToGroceryList = (recipe) => {
   };
 
   return (
-    <div className="recipes-container" style={{ backgroundImage: 'url(/images/recipebackground.jpeg)' }}> 
+    <div className="recipes-container" style={{ backgroundImage: 'url(/images/CB.jpeg)' }}> 
       <h1>Recipes</h1>
       <h2>Choose Ingredients</h2>
       {allIngredients.map((ingredient, index) => (
