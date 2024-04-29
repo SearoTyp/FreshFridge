@@ -115,7 +115,7 @@ const addMissingItemsToGroceryList = (recipe) => {
       <div className="navigation-buttons">
         <button onClick={() => navigate('/MainPage')}>Go to Ingredients List</button>
         <button onClick={() => navigate('/grocery-list')}>Go to Grocery List</button>
-        <button onClick={goToHomepage} className="navigation-button">Go to Homepage</button>
+        <button onClick={() => navigate('/')}>Go to Homepage</button>
       </div>
       <h1 className="recipe-title">Recipes</h1>
       <h2>Choose Ingredients</h2>
