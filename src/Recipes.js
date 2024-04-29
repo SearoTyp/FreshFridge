@@ -20,12 +20,12 @@ useEffect(() => {
   const storedIngredients = JSON.parse(sessionStorage.getItem('ingredients') || '[]');
   setAllIngredients(storedIngredients);
 }, []);
-const handleSearchChange = (e) => {
-  setSearchQuery(e.target.value);
+const handleSearchChange = (nativeEvent) => {
+  setSearchQuery(nativeEvent.target.value);
 };
 
-const handleSearchSubmit = (e) => {
-  if (e.key === 'Enter') {
+const handleSearchSubmit = (nativeEvent) => {
+  if (nativeEvent.key === 'Enter') {
     fetchRecipes();
   }
 };
