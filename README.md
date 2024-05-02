@@ -1,7 +1,10 @@
 ## Prerequisite Steps to Take before trying to compile our Program  1
-Open your terminal and install homebrew https://brew.sh/  the installation command looks like this /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-when you finish installing it will prompt you to add homebrew to your path to do this we copy and paste the first line of code it gives starting with "echo 'eval'" 
-The next line of code starts with "eval "$" 
+Open your terminal and install homebrew Website (https://brew.sh/) the installation command looks like this /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+when you finish installing it will prompt you to add homebrew to your path to do this we copy and paste the first line of code it gives starting with "echo 'eval'"  push that in your terminal then
+
+we need to copy the next line of code starts with "eval "$"  and push that as well 
+
 once both these lines were entered successfully we can check to make sure we have installed homebrew successfully by closing the terminal and applying this command in the terminal brew --version if you installed it successfully it should tell you your version of homebrew
 
 ## Prerequisite Steps to Take before trying to Compile Our Program  2
