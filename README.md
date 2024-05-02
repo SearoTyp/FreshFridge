@@ -28,6 +28,11 @@ Now we have all the dependencies installed Congrats it's a lengthy process now w
 ## Prerequisite Steps to Take Before Trying to Compile Our Program  6
 Lastly, after you clone our repo while your in our  repos directory you  need to type this command on the terminal npm install react-router-dom axios 
 
+## Helpfull links 
+Youtube video explaining how to install https://youtu.be/MJEcookWYUI?feature=shared 
+
+React Website https://reactnative.dev/docs/environment-setup?guide=native&os=macos
+
 
 
 
