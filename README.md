@@ -1,3 +1,82 @@
+## Prerequisite Steps to Take before trying to compile our Program  1
+Open your terminal and install homebrew https://brew.sh/  the installation command looks like this /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+when you finish installing it will prompt you to add homebrew to your path to do this we copy and paste the first line of code it gives starting with "echo 'eval'" 
+The next line of code starts with "eval "$" 
+once both these lines were entered successfully we can check to make sure we have installed homebrew successfully by closing the terminal and applying this command in the terminal brew --version if you installed it successfully it should tell you your version of homebrew
+
+## Prerequisite Steps to Take before trying to Compile Our Program  2
+Now that we have installed homebrew we need to install node so we will use the command brew install node in the terminal again after the installation finishes to make sure it was correctly installed we will need to do node --version again if we installed it successfully it should give you what version you have 
+installing node also installs npm we can check that by doing npm --version again it should tell us in the terminal what version we have after that command 
+
+
+## Prerequisite Steps to Take before trying to Compile Our Program  3
+Now we should have node,npm, and homebrew we need to install watchman so in the terminal to install watchman run this line of code brew install watchman
+
+
+## Prerequisite Steps To take before trying to compile our Program  4
+Now we need to install ruby and Cocoapods to install ruby we type in our terminal brew install ruby to make sure it was correctly installed we will need to do the ruby --version  in the terminal 
+
+Now we install cocoapods to install our code will look slightly different we want to type in on terminal sudo gem install -n /user/local/bin ffi cocoapods again to  make sure it was correctly installed we will need to do cocoapods --version  in the terminal 
+
+
+
+## Prerequisite Steps to Take Before Trying to Compile Our Program  5
+Now we have all the dependencies installed Congrats it's a lengthy process now we want to install react native to do this we go on our terminal and type in npx react-native init nameofproject if this is the first you run the command it will ask you if you want to install react native (also a flower should show up on your screen) select yes and it will install 
+
+
+
+## Prerequisite Steps to Take Before Trying to Compile Our Program  6
+Lastly, after you clone our repo while your in our  repos directory you  need to type this command on the terminal npm install react-router-dom axios 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
